@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.item;
+package com.zing.zingsbirdzing.item;
 
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.resources.Identifier;
 
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 public class GoldenBirdzingArmorItem extends Item {
 	public GoldenBirdzingArmorItem(Item.Properties properties) {

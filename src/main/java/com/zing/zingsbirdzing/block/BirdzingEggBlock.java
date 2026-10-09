@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.block;
+package com.zing.zingsbirdzing.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -18,7 +18,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.procedures.BirdzingEggOnBlockRightclickedProcedure;
+import com.zing.zingsbirdzing.procedures.BirdzingEggOnBlockRightclickedProcedure;
 
 import java.util.function.Function;
 

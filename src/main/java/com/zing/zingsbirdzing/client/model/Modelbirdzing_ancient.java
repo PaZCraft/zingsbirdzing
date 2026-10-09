@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.model;
+package com.zing.zingsbirdzing.client.model;
 
 import net.minecraft.util.Mth;
 import net.minecraft.resources.Identifier;

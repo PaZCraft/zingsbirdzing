@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.model.animations;
+package com.zing.zingsbirdzing.client.model.animations;
 
 import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.animation.Keyframe;

@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client;
+package com.zing.zingsbirdzing.client;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.particle;
+package com.zing.zingsbirdzing.client.particle;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.core.particles.SimpleParticleType;

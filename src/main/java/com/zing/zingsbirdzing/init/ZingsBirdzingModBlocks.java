@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -9,9 +9,9 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;
 
-import net.mcreator.zingsbirdzing.block.BirdzingHeadBlock;
-import net.mcreator.zingsbirdzing.block.BirdzingEggBlock;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.block.BirdzingHeadBlock;
+import com.zing.zingsbirdzing.block.BirdzingEggBlock;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 import java.util.function.Function;
 

@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.entity;
+package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.fml.common.asm.enumextension.EnumProxy;
@@ -28,9 +28,9 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModItems;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModItems;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class OminousBirdzingEntity extends Raider {
 	public static final EnumProxy<Raid.RaiderType> RAIDER_TYPE = new EnumProxy<>(Raid.RaiderType.class, ZingsBirdzingModEntities.OMINOUS_BIRDZING, new int[]{0, 0, 0, 1, 2, 3, 4, 5});

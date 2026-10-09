@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.item;
+package com.zing.zingsbirdzing.item;
 
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.item.Item;
@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.component.DataComponents;
 
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 public class ZingLogoBannerPatternItem extends Item {
 	public static final TagKey<BannerPattern> PROVIDED_PATTERNS = TagKey.create(Registries.BANNER_PATTERN, Identifier.fromNamespaceAndPath(ZingsBirdzingMod.MODID, "pattern_item/zing_logo_banner_pattern"));

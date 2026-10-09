@@ -1,11 +1,11 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.Entity;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class EntityModelInventoryDisplaySkelBirdProcedure {
 	public static Entity execute(LevelAccessor world) {

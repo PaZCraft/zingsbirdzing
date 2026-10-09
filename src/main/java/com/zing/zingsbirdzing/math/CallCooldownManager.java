@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.math;
+package com.zing.zingsbirdzing.math;
 
 import java.util.concurrent.ConcurrentHashMap;
 

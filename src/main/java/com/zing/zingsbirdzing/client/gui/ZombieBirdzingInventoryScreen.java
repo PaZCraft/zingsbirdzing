@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.gui;
+package com.zing.zingsbirdzing.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
@@ -12,9 +12,9 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 
-import net.mcreator.zingsbirdzing.world.inventory.ZombieBirdzingInventoryMenu;
-import net.mcreator.zingsbirdzing.procedures.EntityModelInventoryDisplayZomBirdProcedure;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModScreens;
+import com.zing.zingsbirdzing.world.inventory.ZombieBirdzingInventoryMenu;
+import com.zing.zingsbirdzing.procedures.EntityModelInventoryDisplayZomBirdProcedure;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModScreens;
 
 import com.mojang.blaze3d.platform.InputConstants;
 

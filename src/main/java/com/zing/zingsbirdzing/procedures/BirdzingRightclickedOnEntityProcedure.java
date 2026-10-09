@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
@@ -18,8 +18,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.world.inventory.BirdzingInventoryMenu;
-import net.mcreator.zingsbirdzing.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.world.inventory.BirdzingInventoryMenu;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
 
 import io.netty.buffer.Unpooled;
 

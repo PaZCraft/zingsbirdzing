@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.item;
+package com.zing.zingsbirdzing.item;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
@@ -16,8 +16,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 
-import net.mcreator.zingsbirdzing.entity.ZingArrowProjectileEntity;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.entity.ZingArrowProjectileEntity;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 public class BirdzingDanceMusicDiscItem extends Item {
 	public BirdzingDanceMusicDiscItem(Item.Properties properties) {

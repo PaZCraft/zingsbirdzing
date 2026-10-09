@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

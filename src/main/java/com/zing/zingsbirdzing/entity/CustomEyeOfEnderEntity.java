@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.entity;
+package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

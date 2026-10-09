@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.world;
+package com.zing.zingsbirdzing.world;
 
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

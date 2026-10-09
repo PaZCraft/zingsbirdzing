@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.entity;
+package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.EventHooks;
@@ -43,10 +43,10 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.procedures.BirdzingRightclickedOnEntitySkeletonProcedure;
-import net.mcreator.zingsbirdzing.procedures.BirdzingPlaybackConditionSitSkeletonProcedure;
-import net.mcreator.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.procedures.BirdzingRightclickedOnEntitySkeletonProcedure;
+import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionSitSkeletonProcedure;
+import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttackMob {
 	public static final EntityDataAccessor<Boolean> DATA_is_sitting = SynchedEntityData.defineId(SkeletonBirdzingEntity.class, EntityDataSerializers.BOOLEAN);

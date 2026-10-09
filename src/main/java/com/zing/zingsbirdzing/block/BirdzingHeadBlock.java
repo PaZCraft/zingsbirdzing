@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.block;
+package com.zing.zingsbirdzing.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;

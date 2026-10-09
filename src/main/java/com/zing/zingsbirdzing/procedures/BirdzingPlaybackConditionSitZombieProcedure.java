@@ -1,8 +1,8 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.entity.Entity;
 
-import net.mcreator.zingsbirdzing.entity.ZombieBirdzingEntity;
+import com.zing.zingsbirdzing.entity.ZombieBirdzingEntity;
 
 public class BirdzingPlaybackConditionSitZombieProcedure {
 	public static boolean execute(Entity entity) {

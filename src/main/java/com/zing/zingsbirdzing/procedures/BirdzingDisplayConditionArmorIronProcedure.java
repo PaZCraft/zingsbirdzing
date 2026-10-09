@@ -1,11 +1,11 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModMenus;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModItems;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModMenus;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModItems;
 
 public class BirdzingDisplayConditionArmorIronProcedure {
 	public static boolean execute(Entity entity) {

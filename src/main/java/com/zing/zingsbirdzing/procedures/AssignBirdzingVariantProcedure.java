@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

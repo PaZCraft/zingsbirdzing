@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.network;
+package com.zing.zingsbirdzing.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -14,9 +14,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.client.Minecraft;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModScreens;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModMenus;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModScreens;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModMenus;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 @EventBusSubscriber
 public record MenuStateUpdateMessage(int elementType, String name, Object elementState) implements CustomPacketPayload {

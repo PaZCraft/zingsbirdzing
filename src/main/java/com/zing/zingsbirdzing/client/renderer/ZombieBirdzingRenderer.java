@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.renderer;
+package com.zing.zingsbirdzing.client.renderer;
 
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -23,10 +23,10 @@ import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.Minecraft;
 
-import net.mcreator.zingsbirdzing.procedures.*;
-import net.mcreator.zingsbirdzing.entity.ZombieBirdzingEntity;
-import net.mcreator.zingsbirdzing.client.model.animations.birdzingAnimation;
-import net.mcreator.zingsbirdzing.client.model.Modelbirdzing;
+import com.zing.zingsbirdzing.procedures.*;
+import com.zing.zingsbirdzing.entity.ZombieBirdzingEntity;
+import com.zing.zingsbirdzing.client.model.animations.birdzingAnimation;
+import com.zing.zingsbirdzing.client.model.Modelbirdzing;
 
 import java.util.Map;
 

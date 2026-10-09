@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.renderer;
+package com.zing.zingsbirdzing.client.renderer;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 
-import net.mcreator.zingsbirdzing.entity.ZingArrowProjectileEntity;
-import net.mcreator.zingsbirdzing.client.model.Modelarrow;
+import com.zing.zingsbirdzing.entity.ZingArrowProjectileEntity;
+import com.zing.zingsbirdzing.client.model.Modelarrow;
 
 import com.mojang.math.Axis;
 import com.mojang.blaze3d.vertex.PoseStack;

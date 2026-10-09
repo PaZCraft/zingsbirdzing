@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.entity;
+package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.EventHooks;
@@ -37,10 +37,10 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.procedures.ZingbirdRightclickedOnEntityProcedure;
-import net.mcreator.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
-import net.mcreator.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.procedures.ZingbirdRightclickedOnEntityProcedure;
+import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
+import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class ZingbirdEntity extends TamableAnimal {
 	public final AnimationState animationState0 = new AnimationState();

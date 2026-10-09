@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Items;
@@ -16,8 +16,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -27,8 +27,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -38,8 +38,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 			if (entity instanceof net.minecraft.world.entity.Mob _mob) {
@@ -47,8 +47,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -58,8 +58,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -69,8 +69,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -80,8 +80,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}
@@ -91,8 +91,8 @@ public class AncientBirdzingRightclickedOnEntityProcedure {
 				if (_targetState != null) {
 					net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 					_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-					_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+					_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+					_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 				}
 			}
 		}

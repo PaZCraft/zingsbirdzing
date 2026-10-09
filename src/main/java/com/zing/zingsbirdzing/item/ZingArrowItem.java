@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.item;
+package com.zing.zingsbirdzing.item;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
@@ -14,7 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 
-import net.mcreator.zingsbirdzing.entity.ZingArrowProjectileEntity;
+import com.zing.zingsbirdzing.entity.ZingArrowProjectileEntity;
 
 public class ZingArrowItem extends Item {
 	public ZingArrowItem(Item.Properties properties) {

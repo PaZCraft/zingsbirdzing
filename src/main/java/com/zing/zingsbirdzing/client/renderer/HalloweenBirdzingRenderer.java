@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.client.renderer;
+package com.zing.zingsbirdzing.client.renderer;
 
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -24,10 +24,10 @@ import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.Minecraft;
 
-import net.mcreator.zingsbirdzing.procedures.HalloweenBirdzingDisplayConditionProcedure;
-import net.mcreator.zingsbirdzing.entity.HalloweenBirdzingEntity;
-import net.mcreator.zingsbirdzing.client.model.animations.birdzingAnimation;
-import net.mcreator.zingsbirdzing.client.model.Modelbirdzing_halloween;
+import com.zing.zingsbirdzing.procedures.HalloweenBirdzingDisplayConditionProcedure;
+import com.zing.zingsbirdzing.entity.HalloweenBirdzingEntity;
+import com.zing.zingsbirdzing.client.model.animations.birdzingAnimation;
+import com.zing.zingsbirdzing.client.model.Modelbirdzing_halloween;
 
 import java.util.Map;
 

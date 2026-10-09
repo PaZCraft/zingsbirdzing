@@ -1,8 +1,8 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.entity.Entity;
 
-import net.mcreator.zingsbirdzing.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
 
 public class BirdzingPlaybackConditionSitProcedure {
 	public static boolean execute(Entity entity) {

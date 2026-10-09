@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.neoforged.neoforge.event.entity.living.AnimalTameEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -11,8 +11,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModBlocks;
-import net.mcreator.zingsbirdzing.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModBlocks;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
 
 import javax.annotation.Nullable;
 
@@ -43,8 +43,8 @@ public class OnBirdzingBreedLayEggProcedure {
 						if (_targetState != null) {
 							net.minecraft.world.level.block.Block _targetBlock = _targetState.getBlock();
 							_mob.getPersistentData().putBoolean("abandonBlockTask", false);
-							_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof net.mcreator.zingsbirdzing.ai.MoveToBlockGoal);
-							_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
+							_mob.goalSelector.getAvailableGoals().removeIf(_wrapped -> _wrapped.getGoal() instanceof com.zing.zingsbirdzing.ai.MoveToBlockGoal);
+							_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToBlockGoal(_mob, _targetBlock, "PRIORITY_LOCK", false, 1.2D));
 						}
 					}
 					world.setBlock(BlockPos.containing(x, y, z), ZingsBirdzingModBlocks.BIRDZING_EGG.get().defaultBlockState(), 3);

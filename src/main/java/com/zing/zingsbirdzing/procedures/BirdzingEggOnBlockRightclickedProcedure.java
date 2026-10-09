@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
@@ -11,7 +11,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class BirdzingEggOnBlockRightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {

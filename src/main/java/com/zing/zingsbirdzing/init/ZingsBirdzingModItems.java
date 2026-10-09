@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -9,8 +9,8 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 
-import net.mcreator.zingsbirdzing.item.*;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.item.*;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 import java.util.function.Function;
 

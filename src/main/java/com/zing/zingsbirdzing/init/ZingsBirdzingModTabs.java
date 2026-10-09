@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.Registries;
 
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 public class ZingsBirdzingModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ZingsBirdzingMod.MODID);

@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -14,8 +14,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 
-import net.mcreator.zingsbirdzing.entity.*;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.entity.*;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 @EventBusSubscriber
 public class ZingsBirdzingModEntities {

@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
@@ -15,7 +15,7 @@ public class JackalopeBirdzingRightclickedOnEntityProcedure {
 				_mob.getPersistentData().putBoolean("abandonBlockTask", false);
 				String _structInput = "minecraft:desert_temple";
 				double _speed = 1;
-				_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
+				_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
 			}
 		}
 		if (hasEntityInInventory(entity, new ItemStack(Blocks.TERRACOTTA))) {
@@ -23,7 +23,7 @@ public class JackalopeBirdzingRightclickedOnEntityProcedure {
 				_mob.getPersistentData().putBoolean("abandonBlockTask", false);
 				String _structInput = "minecraft:mesa_mineshaft";
 				double _speed = 1;
-				_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
+				_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
 			}
 		}
 	}

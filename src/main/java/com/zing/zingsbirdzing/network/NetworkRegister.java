@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.network;
+package com.zing.zingsbirdzing.network;
 
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;

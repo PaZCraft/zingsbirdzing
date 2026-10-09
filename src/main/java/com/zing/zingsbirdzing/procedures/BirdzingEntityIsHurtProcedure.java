@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.Entity;
@@ -8,8 +8,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModParticleTypes;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModParticleTypes;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 public class BirdzingEntityIsHurtProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {

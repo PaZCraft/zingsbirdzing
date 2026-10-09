@@ -1,7 +1,7 @@
 /*
  *	MCreator note: This file will be REGENERATED on each build.
  */
-package net.mcreator.zingsbirdzing.init;
+package com.zing.zingsbirdzing.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -16,11 +16,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.client.Minecraft;
 
-import net.mcreator.zingsbirdzing.world.inventory.ZombieBirdzingInventoryMenu;
-import net.mcreator.zingsbirdzing.world.inventory.SkeletonBirdzingInventoryMenu;
-import net.mcreator.zingsbirdzing.world.inventory.BirdzingInventoryMenu;
-import net.mcreator.zingsbirdzing.network.MenuStateUpdateMessage;
-import net.mcreator.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.world.inventory.ZombieBirdzingInventoryMenu;
+import com.zing.zingsbirdzing.world.inventory.SkeletonBirdzingInventoryMenu;
+import com.zing.zingsbirdzing.world.inventory.BirdzingInventoryMenu;
+import com.zing.zingsbirdzing.network.MenuStateUpdateMessage;
+import com.zing.zingsbirdzing.ZingsBirdzingMod;
 
 import java.util.Map;
 

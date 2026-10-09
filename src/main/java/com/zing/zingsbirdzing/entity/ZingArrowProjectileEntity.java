@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.entity;
+package com.zing.zingsbirdzing.entity;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
@@ -16,8 +16,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModItems;
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModItems;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 import javax.annotation.Nullable;
 

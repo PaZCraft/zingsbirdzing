@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.ai;
+package com.zing.zingsbirdzing.ai;
 
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.entity.ai.goal.Goal;

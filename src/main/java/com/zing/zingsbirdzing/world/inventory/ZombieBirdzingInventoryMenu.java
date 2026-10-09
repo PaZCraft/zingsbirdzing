@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.world.inventory;
+package com.zing.zingsbirdzing.world.inventory;
 
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
@@ -27,7 +27,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModMenus;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModMenus;
 
 import java.util.function.Supplier;
 import java.util.Map;

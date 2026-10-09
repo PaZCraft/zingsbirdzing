@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.util.RandomSource;
@@ -6,7 +6,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.particles.SimpleParticleType;
 
-import net.mcreator.zingsbirdzing.init.ZingsBirdzingModParticleTypes;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModParticleTypes;
 
 public class BirdzingAncientEntityIsHurtProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {

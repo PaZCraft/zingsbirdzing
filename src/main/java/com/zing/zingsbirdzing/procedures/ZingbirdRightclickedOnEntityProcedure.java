@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.procedures;
+package com.zing.zingsbirdzing.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.item.Items;
@@ -17,7 +17,7 @@ public class ZingbirdRightclickedOnEntityProcedure {
 				_mob.getPersistentData().putBoolean("abandonBlockTask", false);
 				String _structInput = "minecraft:village_plains";
 				double _speed = 1;
-				_mob.goalSelector.addGoal(1, new net.mcreator.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
+				_mob.goalSelector.addGoal(1, new com.zing.zingsbirdzing.ai.MoveToStructureGoal(_mob, _structInput, _speed, "zings_birdzing"));
 			}
 		}
 	}

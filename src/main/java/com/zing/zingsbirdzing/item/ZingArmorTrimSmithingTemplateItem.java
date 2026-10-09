@@ -1,4 +1,4 @@
-package net.mcreator.zingsbirdzing.item;
+package com.zing.zingsbirdzing.item;
 
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Item;
