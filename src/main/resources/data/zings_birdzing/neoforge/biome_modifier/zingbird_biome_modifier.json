@@ -1,0 +1,23 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "desert",
+    "jagged_peaks",
+    "lukewarm_ocean",
+    "lush_caves",
+    "old_growth_spruce_taiga",
+    "plains",
+    "savanna",
+    "sparse_jungle",
+    "stony_shore",
+    "sunflower_plains",
+    "windswept_gravelly_hills",
+    "windswept_savanna"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:zingbird",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

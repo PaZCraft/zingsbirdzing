@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "jungle",
+    "dark_forest",
+    "grove"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:ancient_birdzing",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

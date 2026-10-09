@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "bamboo_jungle",
+    "crimson_forest",
+    "sunflower_plains"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:skeleton_birdzing",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

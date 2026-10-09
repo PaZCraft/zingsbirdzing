@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "zing_arrow",
+  "category": "equipment",
+  "pattern": [
+    "a",
+    "b",
+    "c"
+  ],
+  "key": {
+    "a": "minecraft:flint",
+    "b": "minecraft:stick",
+    "c": "zings_birdzing:birdzing_feather"
+  },
+  "result": {
+    "id": "zings_birdzing:zing_arrow",
+    "count": 4
+  }
+}

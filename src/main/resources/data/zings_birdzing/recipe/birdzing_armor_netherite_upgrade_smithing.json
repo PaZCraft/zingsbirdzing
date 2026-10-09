@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "base": "zings_birdzing:diamond_birdzing_armor",
+  "addition": "minecraft:netherite_ingot",
+  "result": {
+    "id": "zings_birdzing:netherite_birdzing_armor"
+  }
+}

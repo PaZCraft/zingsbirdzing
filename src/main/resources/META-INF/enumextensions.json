@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/entity/raid/Raid$RaiderType",
+      "name": "ZINGS_BIRDZING_OMINOUS_BIRDZING",
+      "constructor": "(Ljava/util/function/Supplier;[I)V",
+      "parameters": {
+        "class": "net/mcreator/zingsbirdzing/entity/OminousBirdzingEntity",
+        "field": "RAIDER_TYPE"
+      }
+    }
+  ]
+}

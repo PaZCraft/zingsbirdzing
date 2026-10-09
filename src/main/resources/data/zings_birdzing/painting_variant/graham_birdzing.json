@@ -1,0 +1,13 @@
+{
+  "asset_id": "zings_birdzing:graham_birdzing",
+  "height": 2,
+  "width": 1,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.zings_birdzing.graham_birdzing.title"
+  },
+  "author": {
+    "color": "gray",
+    "translate": "painting.zings_birdzing.graham_birdzing.author"
+  }
+}

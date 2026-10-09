@@ -1,0 +1,8 @@
+{
+  "parent": "zings_birdzing:custom/birdzing_head",
+  "textures": {
+    "all": "zings_birdzing:block/head_birdzing",
+    "particle": "zings_birdzing:block/head_birdzing",
+    "0": "zings_birdzing:block/head_birdzing"
+  }
+}

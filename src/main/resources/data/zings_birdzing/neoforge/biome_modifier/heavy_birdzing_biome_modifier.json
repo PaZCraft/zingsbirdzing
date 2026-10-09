@@ -1,0 +1,19 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "badlands",
+    "eroded_badlands",
+    "flower_forest",
+    "frozen_peaks",
+    "plains",
+    "savanna",
+    "swamp",
+    "taiga"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:heavy_birdzing",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

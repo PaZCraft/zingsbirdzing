@@ -1,0 +1,18 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "plains",
+    "snowy_plains",
+    "taiga",
+    "desert",
+    "jungle",
+    "swamp",
+    "savanna"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:villager_birdzing",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

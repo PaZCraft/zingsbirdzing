@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "zing_armor_trim",
+  "category": "equipment",
+  "pattern": [
+    "aba",
+    "aca",
+    "aaa"
+  ],
+  "key": {
+    "a": "#zings_birdzing:zing_armor_trim_gemstone_craftables",
+    "b": "zings_birdzing:zing_armor_trim_smithing_template",
+    "c": "zings_birdzing:birdzing_feather"
+  },
+  "result": {
+    "id": "zings_birdzing:zing_armor_trim_smithing_template",
+    "count": 2
+  }
+}

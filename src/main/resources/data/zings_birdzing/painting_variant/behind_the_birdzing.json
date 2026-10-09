@@ -1,0 +1,13 @@
+{
+  "asset_id": "zings_birdzing:behind_the_birdzing",
+  "height": 8,
+  "width": 8,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.zings_birdzing.behind_the_birdzing.title"
+  },
+  "author": {
+    "color": "gray",
+    "translate": "painting.zings_birdzing.behind_the_birdzing.author"
+  }
+}

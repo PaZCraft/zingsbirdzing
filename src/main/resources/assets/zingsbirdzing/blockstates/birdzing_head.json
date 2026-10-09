@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "zings_birdzing:block/birdzing_head",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "zings_birdzing:block/birdzing_head"
+    },
+    "axis=z": {
+      "model": "zings_birdzing:block/birdzing_head",
+      "x": 90
+    }
+  }
+}

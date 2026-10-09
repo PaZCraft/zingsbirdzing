@@ -1,0 +1,25 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "end_barrens",
+    "jungle",
+    "lush_caves",
+    "meadow",
+    "plains",
+    "savanna_plateau",
+    "small_end_islands",
+    "snowy_beach",
+    "soul_sand_valley",
+    "stony_shore",
+    "the_end",
+    "warm_ocean",
+    "warped_forest",
+    "windswept_gravelly_hills"
+  ],
+  "spawners": {
+    "type": "zings_birdzing:long_birdzing",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 4
+  }
+}

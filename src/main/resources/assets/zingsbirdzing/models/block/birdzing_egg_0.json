@@ -1,0 +1,8 @@
+{
+  "parent": "zings_birdzing:custom/birdzing_egg",
+  "textures": {
+    "all": "zings_birdzing:block/birdzing_egg_stage_1",
+    "particle": "zings_birdzing:block/birdzing_egg_stage_0",
+    "0": "zings_birdzing:block/birdzing_egg_stage_1"
+  }
+}

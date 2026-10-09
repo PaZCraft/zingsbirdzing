@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "egg_stages=1": {
+      "model": "zings_birdzing:block/birdzing_egg_0"
+    },
+    "egg_stages=2": {
+      "model": "zings_birdzing:block/birdzing_egg_1"
+    },
+    "egg_stages=3": {
+      "model": "zings_birdzing:block/birdzing_egg_2"
+    },
+    "egg_stages=0": {
+      "model": "zings_birdzing:block/birdzing_egg"
+    }
+  }
+}

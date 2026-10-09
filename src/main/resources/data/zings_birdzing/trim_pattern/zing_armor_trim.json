@@ -1,0 +1,7 @@
+{
+  "asset_id": "zings_birdzing:zing_armor_trim",
+  "description": {
+    "translate": "trim_pattern.zings_birdzing.zing_armor_trim"
+  },
+  "template_item": "zings_birdzing:zing_armor_trim_smithing_template"
+}

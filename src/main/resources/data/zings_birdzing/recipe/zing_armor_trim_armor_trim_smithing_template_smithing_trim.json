@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_trim",
+  "addition": "#minecraft:trim_materials",
+  "base": "#minecraft:trimmable_armor",
+  "pattern": "zings_birdzing:zing_armor_trim",
+  "template": "zings_birdzing:zing_armor_trim_smithing_template"
+}

@@ -1,0 +1,430 @@
+{
+  "entity.birdzing.idle": {
+    "subtitle": "subtitles.entity.birdzing.idle",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_idle_6",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_idle_5",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_idle_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_idle_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_idle_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_idle_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.hurt": {
+    "subtitle": "subtitles.entity.birdzing.hurt",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_hurt_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_hurt_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_hurt_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.angry": {
+    "subtitle": "subtitles.entity.birdzing.angry",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_angry_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_angry_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_angry_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_angry_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.step": {
+    "subtitle": "subtitles.entity.birdzing.step",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_step_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_step_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_step_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_step_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.death": {
+    "subtitle": "subtitles.entity.birdzing.death",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_death_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_death_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.eat": {
+    "subtitle": "subtitles.entity.birdzing.eat",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_eat_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_eat_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_eat_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_eat_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zingbird.idle": {
+    "subtitle": "subtitles.entity.zingbird.idle",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zingbird_idle_6",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_idle_5",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_idle_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_idle_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_idle_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_idle_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zingbird.hurt": {
+    "subtitle": "subtitles.entity.zingbird.hurt",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zingbird_hurt_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_hurt_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_hurt_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zingbird.angry": {
+    "subtitle": "subtitles.entity.zingbird.angry",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zingbird_angry_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_angry_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_angry_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_angry_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zingbird.death": {
+    "subtitle": "subtitles.entity.zingbird.death",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zingbird_death_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zingbird_death_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.heavy_birdzing.idle": {
+    "subtitle": "subtitles.entity.heavy_birdzing.idle",
+    "sounds": [
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_6",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_5",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_idle_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.heavy_birdzing.hurt": {
+    "subtitle": "subtitles.entity.heavy_birdzing.hurt",
+    "sounds": [
+      {
+        "name": "zings_birdzing:heavy_birdzing_hurt_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_hurt_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_hurt_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.heavy_birdzing.angry": {
+    "subtitle": "subtitles.entity.heavy_birdzing.angry",
+    "sounds": [
+      {
+        "name": "zings_birdzing:heavy_birdzing_angry_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_angry_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_angry_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_angry_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.heavy_birdzing.death": {
+    "subtitle": "subtitles.entity.heavy_birdzing.death",
+    "sounds": [
+      {
+        "name": "zings_birdzing:heavy_birdzing_death_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:heavy_birdzing_death_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.long_birdzing.idle": {
+    "subtitle": "subtitles.entity.long_birdzing.idle",
+    "sounds": [
+      {
+        "name": "zings_birdzing:long_birdzing_idle_6",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_idle_5",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_idle_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_idle_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_idle_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_idle_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.long_birdzing.hurt": {
+    "subtitle": "subtitles.entity.long_birdzing.hurt",
+    "sounds": [
+      {
+        "name": "zings_birdzing:long_birdzing_hurt_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_hurt_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_hurt_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.long_birdzing.angry": {
+    "subtitle": "subtitles.entity.long_birdzing.angry",
+    "sounds": [
+      {
+        "name": "zings_birdzing:long_birdzing_angry_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_angry_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_angry_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_angry_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.long_birdzing.death": {
+    "subtitle": "subtitles.entity.long_birdzing.death",
+    "sounds": [
+      {
+        "name": "zings_birdzing:long_birdzing_death_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:long_birdzing_death_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zing_arrow.impact": {
+    "subtitle": "subtitles.entity.zing_arrow.impact",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zing_arrow_impact_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_impact_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_impact_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_impact_1",
+        "stream": false
+      }
+    ]
+  },
+  "entity.zing_arrow.shot": {
+    "subtitle": "subtitles.entity.zing_arrow.shot",
+    "sounds": [
+      {
+        "name": "zings_birdzing:zing_arrow_shot_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_shot_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_shot_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:zing_arrow_shot_1",
+        "stream": false
+      }
+    ]
+  },
+  "record.birdzing_dance": {
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_dance",
+        "stream": true
+      }
+    ]
+  }
+}
