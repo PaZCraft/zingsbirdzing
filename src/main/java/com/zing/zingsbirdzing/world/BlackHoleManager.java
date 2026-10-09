@@ -101,7 +101,7 @@ public class BlackHoleManager {
 						Vec3 pullDir = center.subtract(entityPos).normalize().scale(currentPower);
 
 						entity.setDeltaMovement(entity.getDeltaMovement().scale(0.8).add(pullDir));
-						entity.hurtMarked = true;
+						
 					}
 				}
 			}
@@ -121,7 +121,7 @@ public class BlackHoleManager {
 					Vec3 sharedPullDir = center.subtract(clusterCenter).normalize().scale(Math.max(0.35, bh.power() * 0.25));
 					for (FallingBlockEntity fbe : clusterList) {
 						fbe.setDeltaMovement(sharedPullDir);
-						fbe.hurtMarked = true;
+						
 					}
 				} else {
 					for (FallingBlockEntity fbe : clusterList) {
@@ -133,7 +133,7 @@ public class BlackHoleManager {
 						} else {
 							Vec3 pullDir = center.subtract(fbePos).scale(0.5);
 							fbe.setDeltaMovement(pullDir);
-							fbe.hurtMarked = true;
+							
 						}
 					}
 				}
@@ -146,7 +146,7 @@ public class BlackHoleManager {
 				} else if (d <= bh.blockRadius()) {
 					Vec3 pullDir = center.subtract(fbePos).normalize().scale(Math.max(0.35, bh.power() * 0.25));
 					fallingBlock.setDeltaMovement(pullDir);
-					fallingBlock.hurtMarked = true;
+					
 				}
 			}
 		}
@@ -232,7 +232,7 @@ public class BlackHoleManager {
 			CLUSTER_MAP.put(fallingBlock.getUUID(), clusterId);
 
 			fallingBlock.setDeltaMovement(sharedPullVelocity);
-			fallingBlock.hurtMarked = true;
+			
 		}
 	}
 }

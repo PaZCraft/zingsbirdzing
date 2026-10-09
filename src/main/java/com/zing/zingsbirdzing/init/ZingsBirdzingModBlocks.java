@@ -10,13 +10,12 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;
 
 import com.zing.zingsbirdzing.block.BirdzingHeadBlock;
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
 import com.zing.zingsbirdzing.block.BirdzingEggBlock;
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
-
 import java.util.function.Function;
 
 public class ZingsBirdzingModBlocks {
-	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ZingsBirdzingMod.MODID);
+	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ZiNGsBirdzing.MODID);
 	public static final DeferredBlock<Block> BIRDZING_HEAD;
 	public static final DeferredBlock<Block> BIRDZING_EGG;
 	static {

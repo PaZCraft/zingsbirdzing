@@ -242,14 +242,14 @@ public class BirdzingInventoryMenu extends AbstractContainerMenu implements Zing
 				for (int j = 0; j < internal.size(); ++j) {
 					if (j == 0)
 						continue;
-					playerIn.drop(ItemUtil.getStack(internal, j), false);
+					playerIn.drop(ItemUtil.getStack(internal, j), false, null);
 					setItemInSlot(j, ItemResource.EMPTY, 0);
 				}
 			} else {
 				for (int i = 0; i < internal.size(); ++i) {
 					if (i == 0)
 						continue;
-					playerIn.getInventory().placeItemBackInInventory(ItemUtil.getStack(internal, i));
+					playerIn.getInventory().placeItemBackInInventory(ItemUtil.getStack(internal, i), null);
 					setItemInSlot(i, ItemResource.EMPTY, 0);
 				}
 			}

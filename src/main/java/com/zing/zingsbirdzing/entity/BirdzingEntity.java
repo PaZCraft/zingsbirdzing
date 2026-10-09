@@ -86,7 +86,7 @@ public class BirdzingEntity extends TamableAnimal {
 		this.goalSelector.addGoal(10, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
-		this.goalSelector.addGoal(14, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
+		this.goalSelector.addGoal(13, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
 	}
 
 	@Override

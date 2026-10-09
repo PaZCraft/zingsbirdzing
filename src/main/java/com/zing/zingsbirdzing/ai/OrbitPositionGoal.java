@@ -91,7 +91,7 @@ public class OrbitPositionGoal extends Goal {
 		double targetZ = centerZ + rawZ;
 		mob.setPos(targetX, targetY, targetZ);
 		mob.setDeltaMovement(Vec3.ZERO);
-		mob.hurtMarked = true;
+		
 	}
 
 	@Override

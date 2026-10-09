@@ -9,13 +9,14 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
 import com.zing.zingsbirdzing.item.*;
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+
 
 import java.util.function.Function;
 
 public class ZingsBirdzingModItems {
-	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ZingsBirdzingMod.MODID);
+	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ZiNGsBirdzing.MODID);
 	public static final DeferredItem<Item> FIRE_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> HEAVY_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> WINGLESS_BIRDZING_SPAWN_EGG;

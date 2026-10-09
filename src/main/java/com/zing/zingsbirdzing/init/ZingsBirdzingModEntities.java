@@ -15,11 +15,12 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 
 import com.zing.zingsbirdzing.entity.*;
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
+
 
 @EventBusSubscriber
 public class ZingsBirdzingModEntities {
-	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ZingsBirdzingMod.MODID);
+	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ZiNGsBirdzing.MODID);
 	public static final DeferredHolder<EntityType<?>, EntityType<BirdzingEntity>> FIRE_BIRDZING = register("fire_birdzing",
 			EntityType.Builder.<BirdzingEntity>of(BirdzingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(1000).setUpdateInterval(3).fireImmune()
 
@@ -110,7 +111,7 @@ public class ZingsBirdzingModEntities {
 	// Start of user code block custom entities
 	// End of user code block custom entities
 	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(ZingsBirdzingMod.MODID, registryname))));
+		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, registryname))));
 	}
 
 	@SubscribeEvent

@@ -19,13 +19,14 @@ import net.minecraft.client.Minecraft;
 import com.zing.zingsbirdzing.world.inventory.ZombieBirdzingInventoryMenu;
 import com.zing.zingsbirdzing.world.inventory.SkeletonBirdzingInventoryMenu;
 import com.zing.zingsbirdzing.world.inventory.BirdzingInventoryMenu;
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
 import com.zing.zingsbirdzing.network.MenuStateUpdateMessage;
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+
 
 import java.util.Map;
 
 public class ZingsBirdzingModMenus {
-	public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(Registries.MENU, ZingsBirdzingMod.MODID);
+	public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(Registries.MENU, ZiNGsBirdzing.MODID);
 	public static final DeferredHolder<MenuType<?>, MenuType<BirdzingInventoryMenu>> BIRDZING_INVENTORY = REGISTRY.register("birdzing_inventory", () -> IMenuTypeExtension.create(BirdzingInventoryMenu::new));
 	public static final DeferredHolder<MenuType<?>, MenuType<ZombieBirdzingInventoryMenu>> ZOMBIE_BIRDZING_INVENTORY = REGISTRY.register("zombie_birdzing_inventory", () -> IMenuTypeExtension.create(ZombieBirdzingInventoryMenu::new));
 	public static final DeferredHolder<MenuType<?>, MenuType<SkeletonBirdzingInventoryMenu>> SKELETON_BIRDZING_INVENTORY = REGISTRY.register("skeleton_birdzing_inventory", () -> IMenuTypeExtension.create(SkeletonBirdzingInventoryMenu::new));

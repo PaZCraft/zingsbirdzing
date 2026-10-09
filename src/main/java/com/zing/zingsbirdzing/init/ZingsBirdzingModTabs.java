@@ -9,12 +9,15 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.network.chat.Component;
+
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
+
 import net.minecraft.core.registries.Registries;
 
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+
 
 public class ZingsBirdzingModTabs {
-	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ZingsBirdzingMod.MODID);
+	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ZiNGsBirdzing.MODID);
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BIRDZINGS = REGISTRY.register("birdzings",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.zings_birdzing.birdzings")).icon(() -> new ItemStack(ZingsBirdzingModItems.FIRE_BIRDZING_SPAWN_EGG.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(ZingsBirdzingModItems.FIRE_BIRDZING_SPAWN_EGG.get());

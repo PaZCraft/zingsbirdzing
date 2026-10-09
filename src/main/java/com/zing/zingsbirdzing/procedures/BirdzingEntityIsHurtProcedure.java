@@ -8,8 +8,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.BlockPos;
 
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModParticleTypes;
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+import com.zing.zingsbirdzing.network.ZingsBirdzingMod;
+
 
 public class BirdzingEntityIsHurtProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
@@ -28,7 +30,7 @@ public class BirdzingEntityIsHurtProcedure {
 				double _multiplier = _speed * (_blocks * 0.3d);
 				double _dy = Math.min(_blocks * 0.15d, 1.5d);
 				_ent.setDeltaMovement(new net.minecraft.world.phys.Vec3(_dx * _multiplier, _dy, _dz * _multiplier));
-				_ent.hurtMarked = true;
+				
 				if (_ent instanceof net.minecraft.server.level.ServerPlayer _player) {
 					_player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket(_ent));
 				}
@@ -41,9 +43,7 @@ public class BirdzingEntityIsHurtProcedure {
 					_living.yBodyRot = _newYaw;
 				}
 			}
-			ZingsBirdzingMod.queueServerWork(11, () -> {
-				sourceentity.stopRiding();
-			});
+			ZiNGsBirdzing.PROCEDURES.executeProcedure(world, x, y, z, sourceentity);
 		}
 	}
 }

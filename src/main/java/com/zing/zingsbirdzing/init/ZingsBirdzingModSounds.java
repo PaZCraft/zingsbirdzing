@@ -8,12 +8,15 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.Identifier;
+
+import com.zing.zingsbirdzing.ZiNGsBirdzing;
+
 import net.minecraft.core.registries.Registries;
 
-import com.zing.zingsbirdzing.ZingsBirdzingMod;
+
 
 public class ZingsBirdzingModSounds {
-	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(Registries.SOUND_EVENT, ZingsBirdzingMod.MODID);
+	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(Registries.SOUND_EVENT, ZiNGsBirdzing.MODID);
 	public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_BIRDZING_IDLE = REGISTRY.register("entity.birdzing.idle", () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.birdzing.idle")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_BIRDZING_HURT = REGISTRY.register("entity.birdzing.hurt", () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.birdzing.hurt")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_BIRDZING_ANGRY = REGISTRY.register("entity.birdzing.angry", () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.birdzing.angry")));
