@@ -76,6 +76,24 @@ public class Modelbirdzing extends EntityModel<LivingEntityRenderState> {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	public static LayerDefinition createBodyArmorLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition birdzingDefinition = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 29.0F, -6.0F));
+        birdzingDefinition.addOrReplaceChild(
+            "body",
+            CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-7.0F, -10.0F, -7.0F, 14.0F, 10.0F, 16.0F, new CubeDeformation(0.01F))
+                .texOffs(0, 26)
+                .addBox(-7.0F, 0.0F, -7.0F, 14.0F, 8.0F, 20.0F, new CubeDeformation(0.01F))
+                .texOffs(48, 26)
+                .addBox(-7.0F, 0.0F, 6.0F, 14.0F, 8.0F, 0.0F, new CubeDeformation(0.0F)),
+            PartPose.offset(0.0F, -13.0F, 5.0F)
+        );
+        return LayerDefinition.create(meshdefinition, 128, 128);
+    }
+
 	public void setupAnim(LivingEntityRenderState state) {
 		float limbSwing = state.walkAnimationPos;
 		float limbSwingAmount = state.walkAnimationSpeed;

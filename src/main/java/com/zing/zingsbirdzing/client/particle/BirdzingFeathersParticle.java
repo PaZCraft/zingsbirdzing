@@ -9,6 +9,18 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 
 public class BirdzingFeathersParticle extends SingleQuadParticle {
+	private static final float ACCELERATION_SCALE = 0.0025F;
+    private static final int INITIAL_LIFETIME = 300;
+    private static final int CURVE_ENDPOINT_TIME = 300;
+    private float rotSpeed;
+    private final float spinAcceleration;
+    private final float windBig;
+    private final boolean swirl;
+    private final boolean flowAway;
+    private final double xaFlowScale;
+    private final double zaFlowScale;
+    private final double swirlPeriod;
+
 	public static BirdzingFeathersParticleProvider provider(SpriteSet spriteSet) {
 		return new BirdzingFeathersParticleProvider(spriteSet);
 	}
@@ -29,19 +41,27 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
 	private float angularVelocity;
 	private float angularAcceleration;
 
-	protected BirdzingFeathersParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
-		super(world, x, y, z, spriteSet.first());
-		this.spriteSet = spriteSet;
-		this.setSize(0.2f, 0.2f);
-		this.lifetime = (int) Math.max(1, 7 + (this.random.nextInt(100) - 50));
-		this.gravity = 0.1f;
-		this.hasPhysics = true;
-		this.xd = vx * 1;
-		this.yd = vy * 1;
-		this.zd = vz * 1;
-		this.angularVelocity = 0.01f;
-		this.angularAcceleration = 0.01f;
-	}
+	protected BirdzingFeathersParticle(ClientLevel level, double x, double y, double z, SpriteSet sprites, float fallAcceleration, float windBig, boolean swirl, boolean flowAway, float scale, float initialVelocity) {
+        super(level, x, y, z);
+        this.setSprite(sprites.get(this.random.nextInt(12), 12));
+        this.rotSpeed = (float) Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
+        float particleRandom = this.random.nextFloat();
+        this.spinAcceleration = (float) Math.toRadians(this.random.nextBoolean() ? -5.0 : 5.0);
+        this.windBig = windBig;
+        this.swirl = swirl;
+        this.flowAway = flowAway;
+        this.lifetime = INITIAL_LIFETIME;
+        this.gravity = fallAcceleration * 1.2F * ACCELERATION_SCALE;
+        float size = scale * (this.random.nextBoolean() ? 0.05F : 0.075F);
+        this.quadSize = size;
+        this.setSize(size, size);
+        this.friction = 1.0F;
+        this.yd = -initialVelocity;
+        this.xaFlowScale = Math.cos(Math.toRadians(particleRandom * 60.0F)) * (double) this.windBig;
+        this.zaFlowScale = Math.sin(Math.toRadians(particleRandom * 60.0F)) * (double) this.windBig;
+        this.swirlPeriod = Math.toRadians(1000.0F + particleRandom * 3000.0F);
+    }
+
 
 	@Override
 	public SingleQuadParticle.Layer getLayer() {
@@ -49,10 +69,45 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
-		this.oRoll = this.roll;
-		this.roll += this.angularVelocity;
-		this.angularVelocity += this.angularAcceleration;
-	}
+    public void tick() {
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
+        if (this.lifetime-- <= 0) {
+            this.remove();
+        }
+
+        if (!this.removed) {
+            float ageInTicks = INITIAL_LIFETIME - this.lifetime;
+            float ageRatio = Math.min(ageInTicks / CURVE_ENDPOINT_TIME, 1.0F);
+            double xAcceleration = 0.0;
+            double zAcceleration = 0.0;
+            if (this.flowAway) {
+                xAcceleration += this.xaFlowScale * Math.pow(ageRatio, 1.25);
+                zAcceleration += this.zaFlowScale * Math.pow(ageRatio, 1.25);
+            }
+
+            if (this.swirl) {
+                xAcceleration += ageRatio * Math.cos(ageRatio * this.swirlPeriod) * this.windBig;
+                zAcceleration += ageRatio * Math.sin(ageRatio * this.swirlPeriod) * this.windBig;
+            }
+
+            this.xd += xAcceleration * ACCELERATION_SCALE;
+            this.zd += zAcceleration * ACCELERATION_SCALE;
+            this.yd = this.yd - this.gravity;
+            this.rotSpeed = this.rotSpeed + this.spinAcceleration / 20.0F;
+            this.oRoll = this.roll;
+            this.roll = this.roll + this.rotSpeed / 20.0F;
+            this.move(this.xd, this.yd, this.zd);
+            if (this.onGround || this.lifetime < INITIAL_LIFETIME - 1 && (this.xd == 0.0 || this.zd == 0.0)) {
+                this.remove();
+            }
+
+            if (!this.removed) {
+                this.xd = this.xd * this.friction;
+                this.yd = this.yd * this.friction;
+                this.zd = this.zd * this.friction;
+            }
+        }
+    }
 }

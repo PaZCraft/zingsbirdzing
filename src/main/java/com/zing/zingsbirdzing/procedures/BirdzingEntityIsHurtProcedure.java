@@ -43,7 +43,21 @@ public class BirdzingEntityIsHurtProcedure {
 					_living.yBodyRot = _newYaw;
 				}
 			}
-			ZiNGsBirdzing.PROCEDURES.executeProcedure(world, x, y, z, sourceentity);
+			ZiNGsBirdzing.PROCEDURES_QUEUE.add(() -> {
+				if (entity instanceof net.minecraft.world.entity.Entity _ent) {
+					double _blocks = 500;
+					double _speed = 5;
+					double _dx = 0;
+					double _dz = 0;
+					double _multiplier = _speed * (_blocks * 0.3d);
+					double _dy = Math.min(_blocks * 0.15d, 1.5d);
+					_ent.setDeltaMovement(new net.minecraft.world.phys.Vec3(_dx * _multiplier, _dy, _dz * _multiplier));
+					
+					if (_ent instanceof net.minecraft.server.level.ServerPlayer _player) {
+						_player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket(_ent));
+					}
+				}
+			});
 		}
 	}
 }

@@ -10,14 +10,14 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Explosion;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.AbstractThrownPotion;
+import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.*;
@@ -38,20 +38,25 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
 
 import com.zing.zingsbirdzing.procedures.BirdzingRightclickedOnEntityProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionSitProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
+
+import java.util.List;
+
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class BirdzingEntity extends TamableAnimal {
-	public static final EntityDataAccessor<Boolean> DATA_is_sitting = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> IS_SITTING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> IS_GRABBING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> IS_FLYING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public final AnimationState animationState0 = new AnimationState();
-	public final AnimationState animationState2 = new AnimationState();
-	public final AnimationState animationState3 = new AnimationState();
+	public final AnimationState animationFly = new AnimationState();
+	public final AnimationState animationSit = new AnimationState();
 
 	public BirdzingEntity(EntityType<BirdzingEntity> type, Level world) {
 		super(type, world);
@@ -63,7 +68,10 @@ public class BirdzingEntity extends TamableAnimal {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(DATA_is_sitting, false);
+		builder.define(IS_SITTING, false);
+		builder.define(HAS_EGG, false);
+		builder.define(IS_GRABBING, false);
+		builder.define(IS_FLYING, false);
 	}
 
 	@Override
@@ -82,11 +90,21 @@ public class BirdzingEntity extends TamableAnimal {
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, (float) 0.5));
 		this.goalSelector.addGoal(7, new MoveBackToVillageGoal(this, 0.6, false));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, LivingEntity.class, (float) 6));
-		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1, (float) 10, (float) 2));
-		this.goalSelector.addGoal(10, new OwnerHurtByTargetGoal(this));
-		this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
 		this.goalSelector.addGoal(13, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
+		if (this.isBaby()) {
+			this.goalSelector.addGoal(14, new FollowParentGoal(this, 1));
+			this.goalSelector.addGoal(15, new PanicGoal(this, 1.2));
+			this.targetSelector.addGoal(19, new HurtByTargetGoal(this).setAlertOthers());
+			this.goalSelector.addGoal(16, new AvoidEntityGoal<>(this, Monster.class, 6, 1.0, 1.2));
+			this.brain.addActivity(Activity.PLAY, 20, List.of(new PlayGoal(this, 1.2)));
+		}
+		if (this.isTame()) {
+			this.goalSelector.addGoal(17, new FollowOwnerGoal(this, 1, (float) 10, (float) 2));
+			this.goalSelector.addGoal(10, new OwnerHurtByTargetGoal(this));
+			this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
+			this.targetSelector.addGoal(18, new HurtByTargetGoal(this).setAlertOthers());
+		}
 	}
 
 	@Override
@@ -95,9 +113,19 @@ public class BirdzingEntity extends TamableAnimal {
 	}
 
 	@Override
-	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+protected SoundEvent getAmbientSound() {
+    if (this.isAggressive()) {
+        return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.birdzing.angry"));
+    }
+	if (this.isBaby()) {
+		if (this.isAggressive()) {
+			return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.chirpzing.angry"));
+		}
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.chirpzing.idle"));
 	}
+    return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.fromNamespaceAndPath("zings_birdzing", "entity.birdzing.idle"));
+}
+
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
@@ -106,13 +134,31 @@ public class BirdzingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
+		if (this.isBaby()) {
+			return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.chirpzing.hurt"));
+		}
 		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
+		if (this.isBaby()) {
+			return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.chirpzing.death"));
+		}
 		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
 	}
+
+	@Override
+	protected void playEatingSound() {
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.eat")), 1.0F, 1.0F);
+	}
+
+	@Override
+	protected void playAttackSound() {
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.attack")), 1.0F, 1.0F);
+	}
+
+	
 
 	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource damagesource, float amount) {
@@ -122,7 +168,6 @@ public class BirdzingEntity extends TamableAnimal {
 		Level world = this.level();
 		Entity entity = this;
 		Entity sourceentity = damagesource.getEntity();
-		Entity immediatesourceentity = damagesource.getDirectEntity();
 
 		BirdzingEntityIsHurtProcedure.execute(world, x, y, z, entity, sourceentity);
 		if (damagesource.is(DamageTypes.IN_FIRE))
@@ -135,6 +180,8 @@ public class BirdzingEntity extends TamableAnimal {
 			return false;
 		if (damagesource.is(DamageTypes.DRAGON_BREATH))
 			return false;
+		if (damagesource.is(DamageTypes.FIREWORKS))
+			return false;
 		return super.hurtServer(level, damagesource, amount);
 	}
 
@@ -146,20 +193,27 @@ public class BirdzingEntity extends TamableAnimal {
 	@Override
 	public void addAdditionalSaveData(ValueOutput valueOutput) {
 		super.addAdditionalSaveData(valueOutput);
-		valueOutput.putBoolean("Datais_sitting", this.entityData.get(DATA_is_sitting));
+		valueOutput.putBoolean("Datais_sitting", this.entityData.get(IS_SITTING));
+		valueOutput.putBoolean("Datahas_egg", this.entityData.get(HAS_EGG));
+		valueOutput.putBoolean("Datais_grabbing", this.entityData.get(IS_GRABBING));
+		valueOutput.putBoolean("Datais_flying", this.entityData.get(IS_FLYING));
 	}
 
 	@Override
 	public void readAdditionalSaveData(ValueInput valueInput) {
 		super.readAdditionalSaveData(valueInput);
-		this.entityData.set(DATA_is_sitting, valueInput.getBooleanOr("Datais_sitting", false));
+		this.entityData.set(IS_SITTING, valueInput.getBooleanOr("Datais_sitting", false));
+		this.entityData.set(HAS_EGG, valueInput.getBooleanOr("Datahas_egg", false));
+		this.entityData.set(IS_GRABBING, valueInput.getBooleanOr("Datais_grabbing", false));
+		this.entityData.set(IS_FLYING, valueInput.getBooleanOr("Datais_flying", false));
 	}
+	
+	
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
 		ItemStack itemstack = sourceentity.getItemInHand(hand);
 		InteractionResult retval = InteractionResult.SUCCESS;
-		Item item = itemstack.getItem();
 		if (itemstack.getItem() instanceof SpawnEggItem) {
 			retval = super.mobInteract(sourceentity, hand);
 		} else if (this.level().isClientSide()) {
@@ -212,8 +266,16 @@ public class BirdzingEntity extends TamableAnimal {
 		super.tick();
 		if (this.level().isClientSide()) {
 			this.animationState0.animateWhen(true, this.tickCount);
-			this.animationState2.animateWhen(BirdzingPlaybackConditionFlyProcedure.execute(this), this.tickCount);
-			this.animationState3.animateWhen(BirdzingPlaybackConditionSitProcedure.execute(this), this.tickCount);
+			this.animationFly.animateWhen(BirdzingPlaybackConditionFlyProcedure.execute(this), this.tickCount);
+			this.animationSit.animateWhen(BirdzingPlaybackConditionSitProcedure.execute(this), this.tickCount);
+		}
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (this.animationFly.isAnimating() && !BirdzingPlaybackConditionFlyProcedure.execute(this)) {
+			this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.fly")), 1.0F, 1.0F);
 		}
 	}
 
@@ -223,14 +285,15 @@ public class BirdzingEntity extends TamableAnimal {
 	}
 
 	@Override
-	public boolean isFood(ItemStack stack) {
-		return Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))).test(stack);
+	public boolean isFood(ItemStack heldItem) {
+		return heldItem.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")));
 	}
 
 	public static void init(RegisterSpawnPlacementsEvent event) {
 		event.register(ZingsBirdzingModEntities.FIRE_BIRDZING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> world.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && (EntitySpawnReason.ignoresLightRequirements(reason) || world.getRawBrightness(pos, 0) > 8),
 				RegisterSpawnPlacementsEvent.Operation.REPLACE);
+
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

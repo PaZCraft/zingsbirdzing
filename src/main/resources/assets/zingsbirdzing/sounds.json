@@ -28,6 +28,25 @@
       }
     ]
   },
+
+  "entity.chirpzing.idle": {
+    "subtitle": "subtitles.entity.chirpzing.idle",
+    "sounds": [
+      {
+        "name": "zings_birdzing:chirpzing_idle_1",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:chirpzing_idle_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:chirpzing_idle_3",
+        "stream": false
+      }
+    ]
+  },
+
   "entity.birdzing.hurt": {
     "subtitle": "subtitles.entity.birdzing.hurt",
     "sounds": [
@@ -49,6 +68,21 @@
       }
     ]
   },
+
+"entity.chirpzing.hurt": {
+    "subtitle": "subtitles.entity.chirpzing.hurt",
+    "sounds": [
+      {
+        "name": "zings_birdzing:chirpzing_hurt_1",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:chirpzing_hurt_2",
+        "stream": false
+      }
+    ]
+  },
+
   "entity.birdzing.angry": {
     "subtitle": "subtitles.entity.birdzing.angry",
     "sounds": [
@@ -70,6 +104,21 @@
       }
     ]
   },
+
+"entity.chirpzing.angry": {
+    "subtitle": "subtitles.entity.chirpzing.angry",
+    "sounds": [
+      {
+        "name": "zings_birdzing:chirpzing_angry_1",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:chirpzing_angry_2",
+        "stream": false
+      }
+    ]
+  },
+
   "entity.birdzing.step": {
     "subtitle": "subtitles.entity.birdzing.step",
     "sounds": [
@@ -104,6 +153,17 @@
       }
     ]
   },
+
+"entity.chirpzing.death": {
+    "subtitle": "subtitles.entity.chirpzing.death",
+    "sounds": [
+      {
+        "name": "zings_birdzing:chirpzing_death",
+        "stream": false
+      }
+    ]
+  },
+
   "entity.birdzing.eat": {
     "subtitle": "subtitles.entity.birdzing.eat",
     "sounds": [
@@ -125,6 +185,39 @@
       }
     ]
   },
+
+"entity.birdzing.flap": {
+    "subtitle": "subtitles.entity.birdzing.flap",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_flap_loop",
+        "stream": false
+      }
+    ]
+  },
+
+  "entity.birdzing.attack": {
+    "subtitle": "subtitles.entity.birdzing.attack",
+    "sounds": [
+      {
+        "name": "zings_birdzing:birdzing_attack_4",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_attack_2",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_attack_3",
+        "stream": false
+      },
+      {
+        "name": "zings_birdzing:birdzing_attack_1",
+        "stream": false
+      }
+    ]
+  },
+
   "entity.zingbird.idle": {
     "subtitle": "subtitles.entity.zingbird.idle",
     "sounds": [

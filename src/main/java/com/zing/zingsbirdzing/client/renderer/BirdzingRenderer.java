@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.layers.SimpleEquipmentLayer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -27,18 +28,29 @@ import com.zing.zingsbirdzing.procedures.*;
 import com.zing.zingsbirdzing.entity.BirdzingEntity;
 import com.zing.zingsbirdzing.client.model.animations.birdzingAnimation;
 import com.zing.zingsbirdzing.client.model.Modelbirdzing;
+import com.zing.zingsbirdzing.client.model.birdzing_baby;
 
 import java.util.Map;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
 public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRenderState, Modelbirdzing> {
-	private final Identifier entityTexture = Identifier.parse("zings_birdzing:textures/entities/birdzing_red.png");
+	private final Identifier BIRDZING_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red.png");
+	private final Identifier BIRDZING_BABY_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red_baby.png");
 
 	public BirdzingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5f);
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_leather.png");
+		this.addLayer(new SimpleEquipmentLayer<>( {
+			this,
+			entity -> entity.getArmor().getItem() instanceof BirdzingArmorItem armor
+				? Optional.ofNullable(armor.getTexture())
+				: Optional.empty()
+			entity -> true
+			new Modelbirdzing(context.bakeLayer(ModModelLayers.BIRDZING_ARMOR)),
+			null
+			));
+		this.addLayer(new SimpleEquipmentLayer<>( {
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_leather.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -55,8 +67,8 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 				}
 			}
 		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_chainmail.png");
+		this.addLayer(new SimpleEquipmentLayer<>( {
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_chainmail.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -74,7 +86,7 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 			}
 		});
 		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_copper.png");
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_copper.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -92,7 +104,7 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 			}
 		});
 		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_iron.png");
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_iron.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -110,7 +122,7 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 			}
 		});
 		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_gold.png");
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_gold.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -128,7 +140,7 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 			}
 		});
 		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_diamond.png");
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_diamond.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -146,7 +158,7 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 			}
 		});
 		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_netherite.png");
+			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_netherite.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
 			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
 
@@ -177,7 +189,8 @@ public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRe
 
 	@Override
 	public Identifier getTextureLocation(LivingEntityRenderState state) {
-		return entityTexture;
+		return BIRDZING_LOCATION;
+		return entity.isBaby() ? BIRDZING_BABY_LOCATION : BIRDZING_LOCATION;
 	}
 
 	@Override

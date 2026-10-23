@@ -29,18 +29,18 @@ public class BirdzingRightclickedOnEntityProcedure {
 			return;
 		if (entity instanceof TamableAnimal _tamEnt0 && _tamEnt0.isTame()) {
 			if (itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:control_sticks")))) {
-				if ((entity instanceof BirdzingEntity _datEntL3 && _datEntL3.getEntityData().get(BirdzingEntity.DATA_is_sitting)) == false) {
+				if ((entity instanceof BirdzingEntity _datEntL3 && _datEntL3.getEntityData().get(BirdzingEntity.IS_SITTING)) == false) {
 					if (entity instanceof net.minecraft.world.entity.TamableAnimal _tamable) {
 						_tamable.setOrderedToSit(true);
 					}
 					if (entity instanceof BirdzingEntity _datEntSetL)
-						_datEntSetL.getEntityData().set(BirdzingEntity.DATA_is_sitting, true);
+						_datEntSetL.getEntityData().set(BirdzingEntity.IS_SITTING, true);
 				} else {
 					if (entity instanceof net.minecraft.world.entity.TamableAnimal _tamable) {
 						_tamable.setOrderedToSit(false);
 					}
 					if (entity instanceof BirdzingEntity _datEntSetL)
-						_datEntSetL.getEntityData().set(BirdzingEntity.DATA_is_sitting, false);
+						_datEntSetL.getEntityData().set(BirdzingEntity.IS_SITTING, false);
 				}
 			}
 			if (itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_menu_openers")))) {
