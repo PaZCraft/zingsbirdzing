@@ -5,7 +5,7 @@ package com.zing.zingsbirdzing.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import com.zing.zingsbirdzing.client.model.birdzing;
+import com.zing.zingsbirdzing.client.model.Modelbirdzing;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import com.zing.zingsbirdzing.client.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
 import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -32,16 +32,6 @@ public class birdzing_baby<T extends BirdzingEntity> extends birdzing<T> {
 	private final ModelPart leg4;
 	private final ModelPart lower_tail;
 
-	public birdzing_baby(ModelPart root) {
-		this.body = root.getChild("body");
-		this.head = this.body.getChild("head");
-		this.left_wing_lower = this.body.getChild("left_wing_lower");
-		this.right_wing_lower = this.body.getChild("right_wing_lower");
-		this.leg1 = this.body.getChild("leg1");
-		this.leg2 = this.body.getChild("leg2");
-		this.leg3 = this.body.getChild("leg3");
-		this.leg4 = this.body.getChild("leg4");
-		this.lower_tail = this.body.getChild("lower_tail");
 	}
 
 	public static LayerDefinition createBodyLayer() {

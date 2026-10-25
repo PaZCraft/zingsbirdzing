@@ -1,0 +1,26 @@
+{
+    "parent": "zings_birdzing:advancement/root",
+    "display": {
+        "icon": "zings_birdzing:item/fire_birdzing_spawn_egg",
+            "id": "zings_birdzing:fire_birdzing_spawn_egg",
+            "count": "",
+            "components": "",
+        "title": "The Rise",
+        "description": "Have your tamed Birdzing perform a grab attack for the first time.",
+        "frame": "task",
+        "background": "zingsbirdzing:birdzing_advancement_background.png",
+        "show_toast": "true",
+        "announce_to_chat": "true",
+        "hidden": "false"
+    },
+    "criteria": {
+        "birdzingAttack": {
+            "trigger": "birdzing_grab_attack",
+            "conditions": {
+                "player": {
+                    "entity_tags": "zings_birdzing:can_perform_grab_attack"
+                }
+            }
+        }
+    }
+}

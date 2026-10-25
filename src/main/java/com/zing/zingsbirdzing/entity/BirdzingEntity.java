@@ -274,7 +274,7 @@ protected SoundEvent getAmbientSound() {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.animationFly.isAnimating() && !BirdzingPlaybackConditionFlyProcedure.execute(this)) {
+		if (this.animationFly.isStarted() && !BirdzingPlaybackConditionFlyProcedure.execute(this)) {
 			this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.fly")), 1.0F, 1.0F);
 		}
 	}

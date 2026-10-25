@@ -3,7 +3,8 @@
   "biomes": [
     "bamboo_jungle",
     "crimson_forest",
-    "sunflower_plains"
+    "sunflower_plains",
+    "dappled_forest"
   ],
   "spawners": {
     "type": "zings_birdzing:fire_birdzing",

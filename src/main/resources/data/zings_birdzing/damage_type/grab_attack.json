@@ -1,0 +1,8 @@
+{
+	"exhaustion": 0.5,
+ 	"message_id": "grab_attack",
+	"scaling": "when_caused_by_living_non_player",
+    "death_message_type": "fall_variants",
+    "death.attack.mob": "%s was grabbed and fallen from the sky by %s",
+    "death.attack.mob.item": "%s was grabbed and fallen from the sky by %s using %s"
+}
