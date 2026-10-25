@@ -2,5 +2,8 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "zings_birdzing:item/birdzing_armor_leather_item"
-  }
+  },
+  "components": {
+      "minecraft:dyed_color": "minecraft:dye"
+    }
 }
