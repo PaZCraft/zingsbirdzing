@@ -1,6 +1,7 @@
 package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.common.NeoForgeMod;
 
@@ -36,9 +37,12 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
+import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal
+
 
 import com.zing.zingsbirdzing.procedures.BirdzingRightclickedOnEntityProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionSitProcedure;
@@ -47,6 +51,7 @@ import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
 
 import java.util.List;
 
+import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class BirdzingEntity extends TamableAnimal {
@@ -54,6 +59,7 @@ public class BirdzingEntity extends TamableAnimal {
 	public static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Boolean> IS_GRABBING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Boolean> IS_FLYING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> HAS_GRAB_ATTACK_COOLDOWN = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN)
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationFly = new AnimationState();
 	public final AnimationState animationSit = new AnimationState();
@@ -72,6 +78,7 @@ public class BirdzingEntity extends TamableAnimal {
 		builder.define(HAS_EGG, false);
 		builder.define(IS_GRABBING, false);
 		builder.define(IS_FLYING, false);
+		builder.define(HAS_GRAB_ATTACK_COOLDOWN, false);
 	}
 
 	@Override
@@ -206,9 +213,24 @@ protected SoundEvent getAmbientSound() {
 		this.entityData.set(HAS_EGG, valueInput.getBooleanOr("Datahas_egg", false));
 		this.entityData.set(IS_GRABBING, valueInput.getBooleanOr("Datais_grabbing", false));
 		this.entityData.set(IS_FLYING, valueInput.getBooleanOr("Datais_flying", false));
+		this.entityData.set(HAS_GRAB_ATTACK_COOLDOWN, valueInput.getBooleanOr("Datahas_grab_attack_cooldown", false));
 	}
+
+
+
 	
-	
+	@Override
+	public AttackEntityEvent(DamageTypes damageTypes) {
+		if isTame() {
+			if boolean(HAS_GRAB_ATTACK_COOLDOWN) == false {
+				return PerformGrabAttackGoal;
+				wait(100)
+				boolean(HAS_GRAB_ATTACK_COOLDOWN) -> true
+			}
+			
+		}
+
+	}
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
