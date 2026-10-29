@@ -1,16 +1,10 @@
 {
   "variants": {
-    "axis=x": {
-      "model": "zings_birdzing:block/birdzing_head",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "zings_birdzing:block/birdzing_head"
-    },
-    "axis=z": {
-      "model": "zings_birdzing:block/birdzing_head",
-      "x": 90
+    "facing=north": { "model": "zings_birdzing:block/birdzing_head" },
+    "facing=south": { "model": "zings_birdzing:block/birdzing_head", "y": 180 },
+    "facing=east":  { "model": "zings_birdzing:block/birdzing_head", "y": 90 },
+    "facing=west":  { "model": "zings_birdzing:block/birdzing_head", "y": 270 },
+    "facing=up":    { "model": "zings_birdzing:block/birdzing_head", "x": 270 },
+    "facing=down":  { "model": "zings_birdzing:block/birdzing_head", "x": 90 }
     }
-  }
 }

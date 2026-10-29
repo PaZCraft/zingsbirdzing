@@ -2,6 +2,7 @@ package com.zing.zingsbirdzing.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -13,13 +14,18 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 import java.util.function.Function;
+
+import com.zing.zingsbirdzing.init.ZingsBirdzingModSounds;
 
 public class BirdzingHeadBlock extends Block {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
@@ -35,7 +41,7 @@ public class BirdzingHeadBlock extends Block {
 			return switch (state.getValue(AXIS)) {
 				case X -> box(0, 5, 6, 4, 11, 10);
 				case Y -> box(6, 0, 5, 10, 4, 11);
-				case Z -> box(6, 5, 12, 10, 11, 16);
+				case Z -> box(6, 5, 12, 10, 11, 15);
 			};
 		});
 	}
@@ -78,5 +84,23 @@ public class BirdzingHeadBlock extends Block {
 	public BlockState rotate(BlockState state, Rotation rot) {
 		return RotatedPillarBlock.rotatePillar(state, rot);
 	}
+
+	@Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        // Only run logic on the server side to handle proper packet syncing
+        if (!level.isClientSide) {
+            level.playSound(
+                null,                  // Passing null plays it for everyone nearby
+                pos,                   // Audio source location 
+                ZingsBirdzingModSounds.ENTITY_BIRDZING_IDLE.get(), // Your registered sound event
+                SoundSource.BLOCKS,    // Audio mixer category
+                1.0F,                  // Volume percentage (1.0 = 100%)
+                1.0F                   // Pitch slider shifting
+            );
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.CONSUME;
+    }
+
 
 }

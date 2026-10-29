@@ -6,6 +6,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 
@@ -38,7 +39,6 @@ public class ZingsBirdzingModItems {
 	public static final DeferredItem<Item> SKELETON_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> HALLOWEEN_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> INFESTED_BIRDZING_SPAWN_EGG;
-	public static final DeferredItem<Item> LEATHER_BIRDZING_ARMOR;
 	public static final DeferredItem<Item> CHAINMAIL_BIRDZING_ARMOR;
 	public static final DeferredItem<Item> IRON_BIRDZING_ARMOR;
 	public static final DeferredItem<Item> COPPER_BIRDZING_ARMOR;
@@ -81,6 +81,16 @@ public class ZingsBirdzingModItems {
 	private static <I extends Item> DeferredItem<I> register(String name, Function<Item.Properties, ? extends I> supplier) {
 		return REGISTRY.registerItem(name, supplier, Item.Properties::new);
 	}
+
+	public static final DeferredHolder<Item, Item> LEATHER_BIRDZING_ARMOR = Item.register("leather_birdzing_armor",
+            () -> new Item(new Item.Properties()
+                    .stacksTo(1)
+                    // 0xA06540 is the hex value for vanilla un-dyed leather brown
+                    // The boolean sets 'showInTooltip' to true or false
+					.BirdzingArmor(ResourceLocation.fromNamespaceAndPath("zings_birdzing", "leather_birdzing_armor"))
+                    .component(DataComponents.DYED_COLOR, new DyedItemColor(0xA06540, true)) 
+            )
+    );
 
 	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
 		return block(block, new Item.Properties());

@@ -1,6 +1,7 @@
 package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.common.NeoForgeMod;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ItemStack;
@@ -21,27 +23,34 @@ import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
-import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal
+import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal;
 
 
 import com.zing.zingsbirdzing.procedures.BirdzingRightclickedOnEntityProcedure;
@@ -51,22 +60,42 @@ import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
 
 import java.util.List;
 
-import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal;
+import javax.annotation.Nullable;
+import java.util.Optional;
+
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
+
+import com.zing.zingsbirdzing.ai.BreedAndLayEggGoal;
+import com.zing.zingsbirdzing.ai.FollowFlockLeaderGoal;
+import com.zing.zingsbirdzing.ai.ForageForSeedsGoal;
+import com.zing.zingsbirdzing.ai.GrabLeapAttackGoal;
+import com.zing.zingsbirdzing.ai.GuardEggsGoal;
 
 public class BirdzingEntity extends TamableAnimal {
 	public static final EntityDataAccessor<Boolean> IS_SITTING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Boolean> IS_GRABBING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Boolean> IS_FLYING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
-	public static final EntityDataAccessor<Boolean> HAS_GRAB_ATTACK_COOLDOWN = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN)
+	public static final EntityDataAccessor<Boolean> HAS_GRAB_ATTACK_COOLDOWN = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> DATA_VARIANT_ID = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Optional<BlockPos>> EGG_POS = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
+    private static final EntityDataAccessor<Boolean> IS_FORAGING = SynchedEntityData.defineId(BirdzingEntity.class, EntityDataSerializers.BOOLEAN);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationFly = new AnimationState();
 	public final AnimationState animationSit = new AnimationState();
 
-	public BirdzingEntity(EntityType<BirdzingEntity> type, Level world) {
-		super(type, world);
-		xpReward = 0;
+	public long grabAttackCooldown = 0;
+    public long customBreedingCooldown = 0;
+    public boolean eggFailed = false;
+
+    // Pack Behavior variables
+    @Nullable private BirdzingEntity flockLeader;
+    private int flockSize = 1;
+
+
+	protected BirdzingEntity(EntityType<BirdzingEntity> type, Level level) {
+		super(type, level);
+		xpReward = 2;
 		setNoAi(false);
 		setPersistenceRequired();
 	}
@@ -79,11 +108,62 @@ public class BirdzingEntity extends TamableAnimal {
 		builder.define(IS_GRABBING, false);
 		builder.define(IS_FLYING, false);
 		builder.define(HAS_GRAB_ATTACK_COOLDOWN, false);
+		builder.define(DATA_VARIANT_ID, 0); // Default fallback variant
+		builder.define(EGG_POS, Optional.empty());
+        builder.define(IS_FORAGING, false);
+	}
+
+	public Optional<BlockPos> getEggPos() { return this.entityData.get(EGG_POS); }
+    public void setEggPos(Optional<BlockPos> pos) { this.entityData.set(EGG_POS, pos); }
+    public boolean isForaging() { return this.entityData.get(IS_FORAGING); }
+    public void setForaging(boolean foraging) { this.entityData.set(IS_FORAGING, foraging); }
+
+	public int getVariant() {
+        return this.entityData.get(DATA_VARIANT_ID);
+    }
+
+    public void setVariant(int variant) {
+        this.entityData.set(DATA_VARIANT_ID, Mth.clamp(variant, 0, 19));
+    }
+
+	@Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        if (spawnType == MobSpawnType.NATURAL || spawnType == MobSpawnType.CHUNK_GENERATION) {
+            this.flockSize = this.random.nextInt(11) + 5; // Pack range between 5 and 15
+        }
+		// Assign a random texture index from 0 to 19 upon initial natural spawning
+        this.setVariant(this.random.nextInt(20));
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    }
+
+	public DamageSource getSkyDropDamageSource() {
+        ResourceKey<DamageType> skyDropKey = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("zings_birdzing", "grab_attack"));
+        return new DamageSource(this.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(grabAttackKey), this);
+    }
+
+	public static AttributeSupplier.Builder createAttributes() {
+		AttributeSupplier.Builder builder = Mob.createMobAttributes();
+		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+		builder = builder.add(Attributes.MAX_HEALTH, 30D);
+		builder = builder.add(Attributes.ARMOR, 0D);
+		builder = builder.add(Attributes.ATTACK_DAMAGE, 5D);
+		builder = builder.add(Attributes.FOLLOW_RANGE, 1000D);
+		builder = builder.add(Attributes.STEP_HEIGHT, 0.6D);
+		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1D);
+		builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5D);
+		builder = builder.add(Attributes.TEMPT_RANGE, 10D);
+		return builder;
 	}
 
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		this.goalSelector.addGoal(22, new GrabLeapAttackGoal(this));
+        this.goalSelector.addGoal(23, new BreedAndLayEggGoal(this));
+        this.goalSelector.addGoal(24, new ForageForSeedsGoal(this));
+        this.goalSelector.addGoal(25, new GuardEggsGoal(this));
+        this.goalSelector.addGoal(26, new FollowFlockLeaderGoal(this));
+        this.goalSelector.addGoal(27, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6, true) {
 			@Override
 			protected boolean canPerformAttack(LivingEntity entity) {
@@ -91,7 +171,9 @@ public class BirdzingEntity extends TamableAnimal {
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
+		this.goalSelector.addGoal(21, new FloatGoal(this));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, (target) -> this.getEggPos().isPresent() && this.getEggPos().get().closerThan(target.position(), 16.0D)));
 		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(5, new FloatGoal(this));
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, (float) 0.5));
@@ -112,7 +194,7 @@ public class BirdzingEntity extends TamableAnimal {
 			this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
 			this.targetSelector.addGoal(18, new HurtByTargetGoal(this).setAlertOthers());
 		}
-	}
+    }
 
 	@Override
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
@@ -198,23 +280,33 @@ protected SoundEvent getAmbientSound() {
 	}
 
 	@Override
-	public void addAdditionalSaveData(ValueOutput valueOutput) {
-		super.addAdditionalSaveData(valueOutput);
-		valueOutput.putBoolean("Datais_sitting", this.entityData.get(IS_SITTING));
-		valueOutput.putBoolean("Datahas_egg", this.entityData.get(HAS_EGG));
-		valueOutput.putBoolean("Datais_grabbing", this.entityData.get(IS_GRABBING));
-		valueOutput.putBoolean("Datais_flying", this.entityData.get(IS_FLYING));
-	}
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+		tag.putBoolean("IsSitting", this.isInSittingPose());
+		tag.putBoolean("HasEgg", this.isInLove());
+		tag.putBoolean("IsGrabbing", this.isJumping());
+		tag.putBoolean("IsFlying", this.isFlapping());
+        tag.putInt("Variant", this.getVariant());
+		tag.putLong("GrabCooldown", this.grabAttackCooldown);
+        tag.putLong("CustomBreedCooldown", this.customBreedingCooldown);
+        tag.putBoolean("EggFailed", this.eggFailed);
+        this.getEggPos().ifPresent(pos -> tag.putLong("EggPosLong", pos.asLong()));
+    }
 
-	@Override
-	public void readAdditionalSaveData(ValueInput valueInput) {
-		super.readAdditionalSaveData(valueInput);
-		this.entityData.set(IS_SITTING, valueInput.getBooleanOr("Datais_sitting", false));
-		this.entityData.set(HAS_EGG, valueInput.getBooleanOr("Datahas_egg", false));
-		this.entityData.set(IS_GRABBING, valueInput.getBooleanOr("Datais_grabbing", false));
-		this.entityData.set(IS_FLYING, valueInput.getBooleanOr("Datais_flying", false));
-		this.entityData.set(HAS_GRAB_ATTACK_COOLDOWN, valueInput.getBooleanOr("Datahas_grab_attack_cooldown", false));
-	}
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+		this.setPose.set(IS_SITTING, tag.getBooleanOr("Datais_sitting", false));
+		this.setInLoveTime(tag.getBooleanOr("Datahas_egg", false));
+		this.setJumping(jumping).set(IS_GRABBING, tag.getBooleanOr("Datais_grabbing", false));
+		this.entityData.set(IS_FLYING, tag.getBooleanOr("Datais_flying", false));
+		this.entityData.set(HAS_GRAB_ATTACK_COOLDOWN, tag.getBooleanOr("Datahas_grab_attack_cooldown", false));
+        this.setVariant(tag.getInt("Variant"));
+		this.grabAttackCooldown = tag.getLong("GrabCooldown");
+        this.customBreedingCooldown = tag.getLong("CustomBreedCooldown");
+        this.eggFailed = tag.getBoolean("EggFailed");
+        if (tag.contains("EggPosLong")) this.setEggPos(Optional.of(BlockPos.of(tag.getLong("EggPosLong"))));
+    }
 
 
 
@@ -222,6 +314,7 @@ protected SoundEvent getAmbientSound() {
 	@Override
 	public AttackEntityEvent(DamageTypes damageTypes) {
 		if isTame() {
+			if targetSelector = hurtClient(entity)
 			if boolean(HAS_GRAB_ATTACK_COOLDOWN) == false {
 				return PerformGrabAttackGoal;
 				wait(100)
@@ -302,9 +395,34 @@ protected SoundEvent getAmbientSound() {
 	}
 
 	@Override
-	public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-		return ZingsBirdzingModEntities.FIRE_BIRDZING.get().create(serverWorld, EntitySpawnReason.BREEDING);
-	}
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level().isClientSide) {
+            // Track dynamic custom breeding limits
+            if (this.customBreedingCooldown > 0) this.customBreedingCooldown--;
+            if (this.grabAttackCooldown > 0) this.grabAttackCooldown--;
+
+            // Handle Age Acceleration (Baby grows up in exactly 5 days: 5 * 24000 = 120000 ticks)
+            if (this.isBaby() && this.getAge() < 0) {
+                // Vanilla age logic: standard is -24000. Force calculation to map 5 days (-120000)
+                this.setAge(this.getAge() + 4); // Speeds up growth cycle appropriately
+            }
+
+            // Monitor egg preservation state
+            if (this.getEggPos().isPresent() && this.level().getBlockState(this.getEggPos().get()).isAir()) {
+                this.setEggPos(Optional.empty());
+                this.eggFailed = true; // Signals potential mate recovery loop
+            }
+        }
+    }
+
+	@Nullable 
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob other) { return null; }
+	
+	public boolean canFlockWith(BirdzingEntity other) { return this.getEggPos().isEmpty(); }
+    public void setFlockLeader(BirdzingEntity leader) { this.flockLeader = leader; }
+    @Nullable public BirdzingEntity getFlockLeader() { return this.flockLeader; }
 
 	@Override
 	public boolean isFood(ItemStack heldItem) {
@@ -318,17 +436,4 @@ protected SoundEvent getAmbientSound() {
 
 	}
 
-	public static AttributeSupplier.Builder createAttributes() {
-		AttributeSupplier.Builder builder = Mob.createMobAttributes();
-		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-		builder = builder.add(Attributes.MAX_HEALTH, 30);
-		builder = builder.add(Attributes.ARMOR, 0);
-		builder = builder.add(Attributes.ATTACK_DAMAGE, 5);
-		builder = builder.add(Attributes.FOLLOW_RANGE, 1000);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
-		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1);
-		builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5);
-		builder = builder.add(Attributes.TEMPT_RANGE, 10);
-		return builder;
-	}
 }

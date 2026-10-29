@@ -1,0 +1,18 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "zings_birdzing:item/leather_birdzing_armor"
+  },
+  "layers": {
+    "birdzing": {
+        "armor": [
+            {
+                "texture":"zings_birdzing:armor_birdzing_leather",
+                "dyeable": {
+          "color_when_undyed": 10511680
+        }
+      }
+    ]
+  }
+            }
+    }

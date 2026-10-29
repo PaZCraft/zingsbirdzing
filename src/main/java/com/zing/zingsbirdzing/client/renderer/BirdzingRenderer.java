@@ -34,21 +34,26 @@ import java.util.Map;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-public class BirdzingRenderer extends MobRenderer<BirdzingEntity, LivingEntityRenderState, Modelbirdzing> {
+public class BirdzingRenderer extends MobRenderer<BirdzingEntity, Modelbirdzing> {
 	private final Identifier BIRDZING_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red.png");
 	private final Identifier BIRDZING_BABY_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red_baby.png");
 
 	public BirdzingRenderer(EntityRendererProvider.Context context) {
-		super(context, new AnimatedModel(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5f);
-		this.addLayer(new SimpleEquipmentLayer<>( {
-			this,
-			entity -> entity.getArmor().getItem() instanceof BirdzingArmorItem armor
-				? Optional.ofNullable(armor.getTexture())
-				: Optional.empty()
-			entity -> true
-			new Modelbirdzing(context.bakeLayer(ModModelLayers.BIRDZING_ARMOR)),
-			null
-			));
+		super(context, new Modelbirdzing(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5f);
+		this.addLayer(new BirdzingArmorRenderer<>(this));
+	}
+
+    @Override
+    public Identifier getTextureLocation(BirdzingEntity entity) {
+		int variant = entity.getVariant();
+			if (entity.getVariant(0)) {
+				if (entity.isBaby()) {
+					return Identifier.fromNamespaceAndPath("zings_birdzing", "textures/entity/birdzing/birdzing_baby_red.png");
+				}
+				return Identifier.fromNamespaceAndPath("zings_birdzing", "textures/entity/birdzing/birdzing_red.png")
+			}
+		}
+		
 		this.addLayer(new SimpleEquipmentLayer<>( {
 			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_leather.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
