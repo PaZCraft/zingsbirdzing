@@ -2,7 +2,6 @@ package com.zing.zingsbirdzing.entity;
 
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
-import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.common.NeoForgeMod;
 
@@ -17,7 +16,6 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.AbstractThrownPotion;
-import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
@@ -50,7 +48,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
-import com.zing.zingsbirdzing.ai.PerformGrabAttackGoal;
 
 
 import com.zing.zingsbirdzing.procedures.BirdzingRightclickedOnEntityProcedure;
@@ -58,7 +55,6 @@ import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionSitProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
 
-import java.util.List;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -93,7 +89,7 @@ public class BirdzingEntity extends TamableAnimal {
     private int flockSize = 1;
 
 
-	protected BirdzingEntity(EntityType<BirdzingEntity> type, Level level) {
+	public BirdzingEntity(EntityType<? extends BirdzingEntity> type, Level level) {
 		super(type, level);
 		xpReward = 2;
 		setNoAi(false);
@@ -127,8 +123,8 @@ public class BirdzingEntity extends TamableAnimal {
     }
 
 	@Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        if (spawnType == MobSpawnType.NATURAL || spawnType == MobSpawnType.CHUNK_GENERATION) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        if (spawnType == EntitySpawnReason.NATURAL || spawnType == EntitySpawnReason.CHUNK_GENERATION) {
             this.flockSize = this.random.nextInt(11) + 5; // Pack range between 5 and 15
         }
 		// Assign a random texture index from 0 to 19 upon initial natural spawning
@@ -138,7 +134,7 @@ public class BirdzingEntity extends TamableAnimal {
 
 	public DamageSource getSkyDropDamageSource() {
         ResourceKey<DamageType> skyDropKey = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("zings_birdzing", "grab_attack"));
-        return new DamageSource(this.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(grabAttackKey), this);
+        return new DamageSource(this.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(skyDropKey), this);
     }
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -173,7 +169,8 @@ public class BirdzingEntity extends TamableAnimal {
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
 		this.goalSelector.addGoal(21, new FloatGoal(this));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, (target) -> this.getEggPos().isPresent() && this.getEggPos().get().closerThan(target.position(), 16.0D)));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<Monster>(this, Monster.class, 10, true, false,
+				(target, level) -> this.getEggPos().isPresent() && this.getEggPos().get().closerThan(target.blockPosition(), 16.0D)));
 		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(5, new FloatGoal(this));
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, (float) 0.5));
@@ -186,7 +183,6 @@ public class BirdzingEntity extends TamableAnimal {
 			this.goalSelector.addGoal(15, new PanicGoal(this, 1.2));
 			this.targetSelector.addGoal(19, new HurtByTargetGoal(this).setAlertOthers());
 			this.goalSelector.addGoal(16, new AvoidEntityGoal<>(this, Monster.class, 6, 1.0, 1.2));
-			this.brain.addActivity(Activity.PLAY, 20, List.of(new PlayGoal(this, 1.2)));
 		}
 		if (this.isTame()) {
 			this.goalSelector.addGoal(17, new FollowOwnerGoal(this, 1, (float) 10, (float) 2));
@@ -280,50 +276,32 @@ protected SoundEvent getAmbientSound() {
 	}
 
 	@Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-		tag.putBoolean("IsSitting", this.isInSittingPose());
-		tag.putBoolean("HasEgg", this.isInLove());
-		tag.putBoolean("IsGrabbing", this.isJumping());
-		tag.putBoolean("IsFlying", this.isFlapping());
-        tag.putInt("Variant", this.getVariant());
-		tag.putLong("GrabCooldown", this.grabAttackCooldown);
-        tag.putLong("CustomBreedCooldown", this.customBreedingCooldown);
-        tag.putBoolean("EggFailed", this.eggFailed);
-        this.getEggPos().ifPresent(pos -> tag.putLong("EggPosLong", pos.asLong()));
+    public void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putBoolean("IsSitting", this.entityData.get(IS_SITTING));
+        output.putBoolean("IsGrabbing", this.entityData.get(IS_GRABBING));
+        output.putBoolean("IsFlying", this.entityData.get(IS_FLYING));
+        output.putInt("Variant", this.getVariant());
+        output.putLong("GrabCooldown", this.grabAttackCooldown);
+        output.putLong("CustomBreedCooldown", this.customBreedingCooldown);
+        output.putBoolean("EggFailed", this.eggFailed);
+        this.getEggPos().ifPresent(pos -> output.putLong("EggPosLong", pos.asLong()));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-		this.setPose.set(IS_SITTING, tag.getBooleanOr("Datais_sitting", false));
-		this.setInLoveTime(tag.getBooleanOr("Datahas_egg", false));
-		this.setJumping(jumping).set(IS_GRABBING, tag.getBooleanOr("Datais_grabbing", false));
-		this.entityData.set(IS_FLYING, tag.getBooleanOr("Datais_flying", false));
-		this.entityData.set(HAS_GRAB_ATTACK_COOLDOWN, tag.getBooleanOr("Datahas_grab_attack_cooldown", false));
-        this.setVariant(tag.getInt("Variant"));
-		this.grabAttackCooldown = tag.getLong("GrabCooldown");
-        this.customBreedingCooldown = tag.getLong("CustomBreedCooldown");
-        this.eggFailed = tag.getBoolean("EggFailed");
-        if (tag.contains("EggPosLong")) this.setEggPos(Optional.of(BlockPos.of(tag.getLong("EggPosLong"))));
+    public void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.entityData.set(IS_SITTING, input.getBooleanOr("IsSitting", false));
+        this.entityData.set(IS_GRABBING, input.getBooleanOr("IsGrabbing", false));
+        this.setJumping(input.getBooleanOr("IsGrabbing", false));
+        this.entityData.set(IS_FLYING, input.getBooleanOr("IsFlying", false));
+        this.setVariant(input.getInt("Variant").orElse(0));
+        this.grabAttackCooldown = input.getLong("GrabCooldown").orElse(0L);
+        this.customBreedingCooldown = input.getLong("CustomBreedCooldown").orElse(0L);
+        this.eggFailed = input.getBooleanOr("EggFailed", false);
+        input.getLong("EggPosLong").ifPresent(pos -> this.setEggPos(Optional.of(BlockPos.of(pos))));
     }
 
-
-
-	
-	@Override
-	public AttackEntityEvent(DamageTypes damageTypes) {
-		if isTame() {
-			if targetSelector = hurtClient(entity)
-			if boolean(HAS_GRAB_ATTACK_COOLDOWN) == false {
-				return PerformGrabAttackGoal;
-				wait(100)
-				boolean(HAS_GRAB_ATTACK_COOLDOWN) -> true
-			}
-			
-		}
-
-	}
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
@@ -387,17 +365,9 @@ protected SoundEvent getAmbientSound() {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
-		if (this.animationFly.isStarted() && !BirdzingPlaybackConditionFlyProcedure.execute(this)) {
-			this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.fly")), 1.0F, 1.0F);
-		}
-	}
-
-	@Override
     public void aiStep() {
         super.aiStep();
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
             // Track dynamic custom breeding limits
             if (this.customBreedingCooldown > 0) this.customBreedingCooldown--;
             if (this.grabAttackCooldown > 0) this.grabAttackCooldown--;

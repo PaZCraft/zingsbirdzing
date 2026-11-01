@@ -1,249 +1,76 @@
 package com.zing.zingsbirdzing.client.renderer;
 
-import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.api.distmarker.Dist;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.context.ContextKey;
-import net.minecraft.resources.Identifier;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.entity.layers.SimpleEquipmentLayer;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.animation.KeyframeAnimation;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.Minecraft;
-
-import com.zing.zingsbirdzing.procedures.*;
-import com.zing.zingsbirdzing.entity.BirdzingEntity;
-import com.zing.zingsbirdzing.client.model.animations.birdzingAnimation;
 import com.zing.zingsbirdzing.client.model.Modelbirdzing;
-import com.zing.zingsbirdzing.client.model.birdzing_baby;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.entity.BenBirdzingEntity;
+import com.zing.zingsbirdzing.entity.CamoBirdzingEntity;
+import com.zing.zingsbirdzing.entity.ChristmasBirdzingEntity;
+import com.zing.zingsbirdzing.entity.CreeperBirdzingEntity;
+import com.zing.zingsbirdzing.entity.FutureBirdzingEntity;
+import com.zing.zingsbirdzing.entity.PiglinBirdzingEntity;
+import com.zing.zingsbirdzing.entity.WitherBirdzingEntity;
 
-import java.util.Map;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
-public class BirdzingRenderer extends MobRenderer<BirdzingEntity, Modelbirdzing> {
-	private final Identifier BIRDZING_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red.png");
-	private final Identifier BIRDZING_BABY_LOCATION = Identifier.parse("zings_birdzing:textures/entity/birdzing/birdzing_red_baby.png");
+public class BirdzingRenderer<T extends BirdzingEntity> extends MobRenderer<T, BirdzingRenderer.BirdzingRenderState, Modelbirdzing> {
+	private static final String[] VARIANTS = {
+			"red", "tan", "sun", "magenta", "rose", "chartreuse", "aqua", "evergreen", "black", "brown",
+			"pink", "purple", "indigo", "blue", "cyan", "green", "yellow", "orange", "colorless", "red"
+	};
 
 	public BirdzingRenderer(EntityRendererProvider.Context context) {
-		super(context, new Modelbirdzing(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5f);
-		this.addLayer(new BirdzingArmorRenderer<>(this));
-	}
-
-    @Override
-    public Identifier getTextureLocation(BirdzingEntity entity) {
-		int variant = entity.getVariant();
-			if (entity.getVariant(0)) {
-				if (entity.isBaby()) {
-					return Identifier.fromNamespaceAndPath("zings_birdzing", "textures/entity/birdzing/birdzing_baby_red.png");
-				}
-				return Identifier.fromNamespaceAndPath("zings_birdzing", "textures/entity/birdzing/birdzing_red.png")
-			}
-		}
-		
-		this.addLayer(new SimpleEquipmentLayer<>( {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_leather.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorLeatherProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new SimpleEquipmentLayer<>( {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_chainmail.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorChainmailProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_copper.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorCopperProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_iron.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorIronProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_gold.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorGoldProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_diamond.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorDiamondProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
-		this.addLayer(new RenderLayer<>(this) {
-			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entity/birdzing/armor/armor_birdzing_netherite.png");
-			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);
-			final EntityModel LAYER_MODEL = new Modelbirdzing(Minecraft.getInstance().getEntityModels().bakeLayer(Modelbirdzing.LAYER_LOCATION));
-
-			@Override
-			public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, LivingEntityRenderState state, float headYaw, float headPitch) {
-				Entity entity = state.getRenderData(ENTITY_KEY);
-				Level world = entity.level();
-				double x = entity.getX();
-				double y = entity.getY();
-				double z = entity.getZ();
-				if (BirdzingDisplayConditionArmorNetheriteProcedure.execute(entity)) {
-					LAYER_MODEL.setupAnim(state);
-					submitNodeCollector.submitModel(LAYER_MODEL, state, poseStack, RENDER_TYPE, light, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
-				}
-			}
-		});
+		super(context, new Modelbirdzing(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5F);
 	}
 
 	@Override
-	public LivingEntityRenderState createRenderState() {
-		return new LivingEntityRenderState();
+	public BirdzingRenderState createRenderState() {
+		return new BirdzingRenderState();
 	}
 
 	@Override
-	public void extractRenderState(BirdzingEntity entity, LivingEntityRenderState state, float partialTicks) {
-		super.extractRenderState(entity, state, partialTicks);
+	public void extractRenderState(T entity, BirdzingRenderState state, float partialTick) {
+		super.extractRenderState(entity, state, partialTick);
+		state.variant = entity.getVariant();
+		state.baby = entity.isBaby();
+		state.specialTexture = getSpecialTexture(entity);
+		state.camouflaged = entity instanceof CamoBirdzingEntity && entity.isInvisible();
 	}
 
 	@Override
-	public Identifier getTextureLocation(LivingEntityRenderState state) {
-		return BIRDZING_LOCATION;
-		return entity.isBaby() ? BIRDZING_BABY_LOCATION : BIRDZING_LOCATION;
+	public Identifier getTextureLocation(BirdzingRenderState state) {
+		if (state.camouflaged) {
+			return Identifier.fromNamespaceAndPath("zingsbirdzing", "textures/entity/birdzing/birdzing_camo_grass.png");
+		}
+		if (state.specialTexture != null) {
+			return Identifier.fromNamespaceAndPath("zingsbirdzing", state.specialTexture);
+		}
+		int variant = state.variant >= 0 && state.variant < VARIANTS.length ? state.variant : 0;
+		boolean hasBabyTexture = switch (variant) {
+			case 0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19 -> true;
+			default -> false;
+		};
+		String suffix = state.baby && hasBabyTexture ? "_baby" : "";
+		return Identifier.fromNamespaceAndPath("zingsbirdzing",
+				"textures/entity/birdzing/birdzing_" + VARIANTS[variant] + suffix + ".png");
 	}
 
-	@Override
-	protected void scale(LivingEntityRenderState state, PoseStack poseStack) {
-		poseStack.scale(state.ageScale, state.ageScale, state.ageScale);
+	private static String getSpecialTexture(BirdzingEntity entity) {
+		if (entity instanceof BenBirdzingEntity) return "textures/entity/ben_birdzing/birdzing_ben.png";
+		if (entity instanceof ChristmasBirdzingEntity) return "textures/entity/christmas_birdzing/birdzing_christmas_red.png";
+		if (entity instanceof CreeperBirdzingEntity) return "textures/entity/birdzing/birdzing_creeper_red.png";
+		if (entity instanceof FutureBirdzingEntity) return "textures/entity/future_birdzing/birdzing_future_red.png";
+		if (entity instanceof PiglinBirdzingEntity) return "textures/entity/piglin_birdzing/birdzing_piglin.png";
+		if (entity instanceof WitherBirdzingEntity) return "textures/entity/wither_birdzing/birdzing_wither.png";
+		return null;
 	}
 
-	private static final class AnimatedModel extends Modelbirdzing {
-		private final KeyframeAnimation keyframeAnimation0;
-		private final KeyframeAnimation keyframeAnimation1;
-		private final KeyframeAnimation keyframeAnimation2;
-		private final KeyframeAnimation keyframeAnimation3;
-
-		public AnimatedModel(ModelPart root) {
-			super(root);
-			this.keyframeAnimation0 = safeBake(birdzingAnimation.idle);
-			this.keyframeAnimation1 = safeBake(birdzingAnimation.walk);
-			this.keyframeAnimation2 = safeBake(birdzingAnimation.fly);
-			this.keyframeAnimation3 = safeBake(birdzingAnimation.sit);
-		}
-
-		private KeyframeAnimation safeBake(AnimationDefinition source) {
-			try {
-				return source.bake(root);
-			} catch (IllegalArgumentException e) {
-				return new AnimationDefinition(0, false, Map.of()).bake(root);
-			}
-		}
-
-		@Override
-		public void setupAnim(LivingEntityRenderState state) {
-			this.root().getAllParts().forEach(ModelPart::resetPose);
-			BirdzingEntity entity = state.getRenderData(ENTITY_KEY);
-			this.keyframeAnimation0.apply(entity.animationState0, state.ageInTicks, 1f);
-			this.keyframeAnimation1.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 1f, 1f);
-			this.keyframeAnimation2.apply(entity.animationState2, state.ageInTicks, 1f);
-			this.keyframeAnimation3.apply(entity.animationState3, state.ageInTicks, 1f);
-			super.setupAnim(state);
-		}
-	}
-
-	public static final ContextKey<BirdzingEntity> ENTITY_KEY = new ContextKey<>(Identifier.parse("zings_birdzing:fire_birdzing_entity"));
-
-	@EventBusSubscriber(Dist.CLIENT)
-	public static class EntityStateAdder {
-		@SubscribeEvent
-		private static void registerRenderStateModifiersEvent(RegisterRenderStateModifiersEvent event) {
-			event.registerEntityModifier(BirdzingRenderer.class, (entity, state) -> state.setRenderData(ENTITY_KEY, entity));
-		}
+	public static class BirdzingRenderState extends LivingEntityRenderState {
+		private int variant;
+		private boolean baby;
+		private boolean camouflaged;
+		private String specialTexture;
 	}
 }

@@ -15,8 +15,8 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.AnimationState;
@@ -53,18 +53,33 @@ public class OminousBirdzingEntity extends Raider {
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
-		this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
+		this.targetSelector.addGoal(3, new JohnnyHurtByTargetGoal());
 		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(5, new FloatGoal(this));
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, (float) 0.5));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, LivingEntity.class, (float) 6));
-		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Player.class, false, true));
-		this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, BirdzingEntity.class, false, true));
+		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<LivingEntity>(this, LivingEntity.class, 10, true, false,
+				(target, level) -> this.isJohnny() && target != this && !this.isAlliedTo(target)));
 		this.goalSelector.addGoal(10, new MoveBackToVillageGoal(this, 0.6, false));
 		this.goalSelector.addGoal(11, new AvoidEntityGoal<>(this, Creaking.class, (float) 6, 1, 1.2));
 		this.goalSelector.addGoal(12, new AvoidEntityGoal<>(this, ZombieBirdzingEntity.class, (float) 6, 1, 1.2));
 		this.goalSelector.addGoal(13, new AvoidEntityGoal<>(this, SkeletonBirdzingEntity.class, (float) 6, 1, 1.2));
 		this.goalSelector.addGoal(14, new AvoidEntityGoal<>(this, HalloweenBirdzingEntity.class, (float) 6, 1, 1.2));
+	}
+
+	private boolean isJohnny() {
+		return this.hasCustomName() && "Johnny".equals(this.getName().getString());
+	}
+
+	private final class JohnnyHurtByTargetGoal extends HurtByTargetGoal {
+		private JohnnyHurtByTargetGoal() {
+			super(OminousBirdzingEntity.this);
+		}
+
+		@Override
+		public boolean canUse() {
+			return OminousBirdzingEntity.this.isJohnny() && super.canUse();
+		}
 	}
 
 	@Override
@@ -121,6 +136,9 @@ public class OminousBirdzingEntity extends Raider {
 	@Override
 	public void tick() {
 		super.tick();
+		if (!this.isJohnny()) {
+			this.setTarget(null);
+		}
 		if (this.level().isClientSide()) {
 			this.animationState0.animateWhen(true, this.tickCount);
 		}

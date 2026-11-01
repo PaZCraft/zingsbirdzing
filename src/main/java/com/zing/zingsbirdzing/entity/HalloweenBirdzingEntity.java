@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Explosion;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ItemStack;
@@ -55,13 +56,21 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 
 import com.zing.zingsbirdzing.procedures.HalloweenBirdzingOnInitialEntitySpawnProcedure;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.ai.VariantFleeBehavior;
+
+import java.time.LocalDate;
 
 import javax.annotation.Nullable;
 
 public class HalloweenBirdzingEntity extends TamableAnimal {
+	private static final EntityDataAccessor<Byte> CLIMBING_FLAGS = SynchedEntityData.defineId(HalloweenBirdzingEntity.class,
+			EntityDataSerializers.BYTE);
 	public final AnimationState animationState0 = new AnimationState();
 
 	public HalloweenBirdzingEntity(EntityType<HalloweenBirdzingEntity> type, Level world) {
@@ -69,6 +78,12 @@ public class HalloweenBirdzingEntity extends TamableAnimal {
 		xpReward = 0;
 		setNoAi(false);
 		setPersistenceRequired();
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(CLIMBING_FLAGS, (byte) 0);
 	}
 
 	@Override
@@ -92,22 +107,6 @@ public class HalloweenBirdzingEntity extends TamableAnimal {
 		this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
 		this.goalSelector.addGoal(14, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
-		this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, CaveSpider.class, false, false));
-		this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Spider.class, false, false));
-		this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Zombie.class, false, false));
-		this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, ZombieVillager.class, false, false));
-		this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Husk.class, false, false));
-		this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, Drowned.class, false, false));
-		this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, Skeleton.class, false, false));
-		this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, Stray.class, false, false));
-		this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, Bogged.class, false, false));
-		this.targetSelector.addGoal(24, new NearestAttackableTargetGoal(this, Parched.class, false, false));
-		this.targetSelector.addGoal(25, new NearestAttackableTargetGoal(this, WitherSkeleton.class, false, false));
-		this.targetSelector.addGoal(26, new NearestAttackableTargetGoal(this, WitherBoss.class, false, false));
-		this.targetSelector.addGoal(27, new NearestAttackableTargetGoal(this, Witch.class, false, false));
-		this.targetSelector.addGoal(28, new NearestAttackableTargetGoal(this, Bat.class, false, false));
-		this.targetSelector.addGoal(29, new NearestAttackableTargetGoal(this, Creeper.class, false, false));
-		this.targetSelector.addGoal(30, new NearestAttackableTargetGoal(this, Phantom.class, false, false));
 	}
 
 	@Override
@@ -210,8 +209,27 @@ public class HalloweenBirdzingEntity extends TamableAnimal {
 	@Override
 	public void tick() {
 		super.tick();
+		if (!this.level().isClientSide()) {
+			byte flags = this.entityData.get(CLIMBING_FLAGS);
+			this.entityData.set(CLIMBING_FLAGS, this.horizontalCollision ? (byte) (flags | 1) : (byte) (flags & -2));
+		}
+		if (!this.level().isClientSide() && this.tickCount % 10 == 0) {
+			VariantFleeBehavior.fleeNearby(this, Monster.class, 16.0D);
+		}
 		if (this.level().isClientSide()) {
 			this.animationState0.animateWhen(true, this.tickCount);
+		}
+	}
+
+	@Override
+	public boolean onClimbable() {
+		return (this.entityData.get(CLIMBING_FLAGS) & 1) != 0;
+	}
+
+	@Override
+	public void makeStuckInBlock(BlockState state, Vec3 motionMultiplier) {
+		if (!state.is(net.minecraft.world.level.block.Blocks.COBWEB)) {
+			super.makeStuckInBlock(state, motionMultiplier);
 		}
 	}
 
@@ -227,7 +245,9 @@ public class HalloweenBirdzingEntity extends TamableAnimal {
 
 	public static void init(RegisterSpawnPlacementsEvent event) {
 		event.register(ZingsBirdzingModEntities.HALLOWEEN_BIRDZING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> world.getDifficulty() != Difficulty.PEACEFUL
-				&& (EntitySpawnReason.ignoresLightRequirements(reason) || Monster.isDarkEnoughToSpawn(world, pos, random)) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random), RegisterSpawnPlacementsEvent.Operation.REPLACE);
+				&& (EntitySpawnReason.ignoresLightRequirements(reason) || Monster.isDarkEnoughToSpawn(world, pos, random))
+				&& Mob.checkMobSpawnRules(entityType, world, reason, pos, random)
+				&& (LocalDate.now().getMonthValue() == 10 || random.nextFloat() < 0.1F), RegisterSpawnPlacementsEvent.Operation.REPLACE);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

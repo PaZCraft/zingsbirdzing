@@ -33,6 +33,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import java.util.EnumSet;
 
 import com.zing.zingsbirdzing.procedures.BirdzingAncientEntityIsHurtProcedure;
 import com.zing.zingsbirdzing.procedures.AncientBirdzingRightclickedOnEntityProcedure;
@@ -71,6 +73,32 @@ public class AncientBirdzingEntity extends TamableAnimal {
 		this.goalSelector.addGoal(13, new LookAtPlayerGoal(this, LivingEntity.class, (float) 6));
 		this.goalSelector.addGoal(14, new EatBlockGoal(this));
 		this.goalSelector.addGoal(15, new MoveBackToVillageGoal(this, 0.6, false));
+		this.goalSelector.addGoal(1, new JumpOntoBlockGoal());
+	}
+
+	private final class JumpOntoBlockGoal extends Goal {
+		private JumpOntoBlockGoal() {
+			this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
+		}
+
+		@Override
+		public boolean canUse() {
+			if (!AncientBirdzingEntity.this.onGround() || AncientBirdzingEntity.this.isPassenger()
+					|| AncientBirdzingEntity.this.getTarget() != null) {
+				return false;
+			}
+
+			BlockPos obstacle = AncientBirdzingEntity.this.blockPosition().relative(
+					Direction.fromYRot(AncientBirdzingEntity.this.getYRot()));
+			return !AncientBirdzingEntity.this.level().getBlockState(obstacle).isAir()
+					&& AncientBirdzingEntity.this.level().getBlockState(obstacle.above()).isAir()
+					&& AncientBirdzingEntity.this.level().getBlockState(obstacle.above(2)).isAir();
+		}
+
+		@Override
+		public void start() {
+			AncientBirdzingEntity.this.getJumpControl().jump();
+		}
 	}
 
 	@Override

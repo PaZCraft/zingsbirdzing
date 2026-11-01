@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": ["snowy_plains", "snowy_taiga", "taiga", "grove"],
+  "spawners": {
+    "type": "zingsbirdzing:christmas_birdzing",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

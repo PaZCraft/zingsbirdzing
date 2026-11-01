@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -47,26 +48,18 @@ public class VillagerBirdzingEntity extends TamableAnimal {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.getNavigation().getNodeEvaluator().setCanOpenDoors(true);
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, true) {
-			@Override
-			protected boolean canPerformAttack(LivingEntity entity) {
-				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
-			}
-		});
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2));
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
 		this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(4, new FloatGoal(this));
-		this.goalSelector.addGoal(6, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
-		this.goalSelector.addGoal(7, new OpenDoorGoal(this, true));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<>(this, ZombieBirdzingEntity.class, (float) 6, 1, 1.2));
-		this.goalSelector.addGoal(9, new MoveBackToVillageGoal(this, 0.6, false));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, LivingEntity.class, (float) 6));
-		this.goalSelector.addGoal(11, new PanicGoal(this, 1.2));
-		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
-		this.goalSelector.addGoal(13, new OwnerHurtByTargetGoal(this));
-		this.goalSelector.addGoal(14, new FollowOwnerGoal(this, 1, (float) 10, (float) 2));
-		this.goalSelector.addGoal(15, new FollowParentGoal(this, 0.8));
-		this.goalSelector.addGoal(16, new LeapAtTargetGoal(this, (float) 0.5));
+		this.goalSelector.addGoal(5, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
+		this.goalSelector.addGoal(6, new OpenDoorGoal(this, true));
+		this.goalSelector.addGoal(7, new AvoidEntityGoal<>(this, Monster.class, 8.0F, 1.0D, 1.2D));
+		this.goalSelector.addGoal(8, new MoveBackToVillageGoal(this, 0.6, false));
+		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, LivingEntity.class, 6.0F));
+		this.goalSelector.addGoal(10, new BreedGoal(this, 1));
+		this.goalSelector.addGoal(11, new FollowOwnerGoal(this, 1, 10.0F, 2.0F));
+		this.goalSelector.addGoal(12, new FollowParentGoal(this, 0.8));
 	}
 
 	@Override

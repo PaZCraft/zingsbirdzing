@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -37,6 +38,7 @@ public class SkeletonBirdzingRenderer extends MobRenderer<SkeletonBirdzingEntity
 
 	public SkeletonBirdzingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelbirdzing.LAYER_LOCATION)), 0.5f);
+		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
 		this.addLayer(new RenderLayer<>(this) {
 			final Identifier LAYER_TEXTURE = Identifier.parse("zings_birdzing:textures/entities/armor_birdzing_leather.png");
 			final RenderType RENDER_TYPE = RenderTypes.entityCutout(LAYER_TEXTURE);

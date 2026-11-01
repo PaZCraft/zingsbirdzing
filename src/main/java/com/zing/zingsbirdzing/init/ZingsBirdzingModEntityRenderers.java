@@ -29,5 +29,12 @@ public class ZingsBirdzingModEntityRenderers {
 		event.registerEntityRenderer(ZingsBirdzingModEntities.SKELETON_BIRDZING.get(), SkeletonBirdzingRenderer::new);
 		event.registerEntityRenderer(ZingsBirdzingModEntities.HALLOWEEN_BIRDZING.get(), HalloweenBirdzingRenderer::new);
 		event.registerEntityRenderer(ZingsBirdzingModEntities.INFESTED_BIRDZING.get(), InfestedBirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.BEN_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.CAMO_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.CHRISTMAS_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.CREEPER_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.FUTURE_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.PIGLIN_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.WITHER_BIRDZING.get(), BirdzingRenderer::new);
 	}
 }

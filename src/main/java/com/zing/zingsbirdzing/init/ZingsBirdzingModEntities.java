@@ -10,9 +10,14 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.tags.BlockTags;
 
 import com.zing.zingsbirdzing.entity.*;
 import com.zing.zingsbirdzing.ZiNGsBirdzing;
@@ -107,6 +112,20 @@ public class ZingsBirdzingModEntities {
 					.sized(0.6f, 0.5f)
 
 	);
+	public static final DeferredHolder<EntityType<?>, EntityType<BenBirdzingEntity>> BEN_BIRDZING = register("ben_birdzing",
+			EntityType.Builder.<BenBirdzingEntity>of(BenBirdzingEntity::new, MobCategory.CREATURE).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<CamoBirdzingEntity>> CAMO_BIRDZING = register("camo_birdzing",
+			EntityType.Builder.<CamoBirdzingEntity>of(CamoBirdzingEntity::new, MobCategory.CREATURE).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<ChristmasBirdzingEntity>> CHRISTMAS_BIRDZING = register("christmas_birdzing",
+			EntityType.Builder.<ChristmasBirdzingEntity>of(ChristmasBirdzingEntity::new, MobCategory.CREATURE).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<CreeperBirdzingEntity>> CREEPER_BIRDZING = register("creeper_birdzing",
+			EntityType.Builder.<CreeperBirdzingEntity>of(CreeperBirdzingEntity::new, MobCategory.MONSTER).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<FutureBirdzingEntity>> FUTURE_BIRDZING = register("future_birdzing",
+			EntityType.Builder.<FutureBirdzingEntity>of(FutureBirdzingEntity::new, MobCategory.CREATURE).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<PiglinBirdzingEntity>> PIGLIN_BIRDZING = register("piglin_birdzing",
+			EntityType.Builder.<PiglinBirdzingEntity>of(PiglinBirdzingEntity::new, MobCategory.MONSTER).sized(0.6F, 0.5F));
+	public static final DeferredHolder<EntityType<?>, EntityType<WitherBirdzingEntity>> WITHER_BIRDZING = register("wither_birdzing",
+			EntityType.Builder.<WitherBirdzingEntity>of(WitherBirdzingEntity::new, MobCategory.MONSTER).sized(0.6F, 0.5F));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities
@@ -130,6 +149,24 @@ public class ZingsBirdzingModEntities {
 		SkeletonBirdzingEntity.init(event);
 		HalloweenBirdzingEntity.init(event);
 		InfestedBirdzingEntity.init(event);
+		registerGroundSpawn(event, BEN_BIRDZING.get());
+		registerGroundSpawn(event, CAMO_BIRDZING.get());
+		event.register(CHRISTMAS_BIRDZING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				(type, level, reason, pos, random) -> level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON)
+						&& (EntitySpawnReason.ignoresLightRequirements(reason) || level.getRawBrightness(pos, 0) > 8)
+						&& ChristmasBirdzingEntity.shouldSpawn(random),
+				RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		registerGroundSpawn(event, CREEPER_BIRDZING.get());
+		registerGroundSpawn(event, FUTURE_BIRDZING.get());
+		registerGroundSpawn(event, PIGLIN_BIRDZING.get());
+		registerGroundSpawn(event, WITHER_BIRDZING.get());
+	}
+
+	private static <T extends Mob> void registerGroundSpawn(RegisterSpawnPlacementsEvent event, EntityType<T> type) {
+		event.register(type, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				(entityType, level, reason, pos, random) -> level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON)
+						&& (EntitySpawnReason.ignoresLightRequirements(reason) || level.getRawBrightness(pos, 0) > 8),
+				RegisterSpawnPlacementsEvent.Operation.REPLACE);
 	}
 
 	@SubscribeEvent
@@ -148,5 +185,12 @@ public class ZingsBirdzingModEntities {
 		event.put(SKELETON_BIRDZING.get(), SkeletonBirdzingEntity.createAttributes().build());
 		event.put(HALLOWEEN_BIRDZING.get(), HalloweenBirdzingEntity.createAttributes().build());
 		event.put(INFESTED_BIRDZING.get(), InfestedBirdzingEntity.createAttributes().build());
+		event.put(BEN_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(CAMO_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(CHRISTMAS_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(CREEPER_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(FUTURE_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(PIGLIN_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(WITHER_BIRDZING.get(), BirdzingEntity.createAttributes().build());
 	}
 }

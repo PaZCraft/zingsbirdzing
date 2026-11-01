@@ -2,10 +2,25 @@
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
+package com.zing.zingsbirdzing.client.model;
 
-public class birdzing_ben<T extends Entity> extends EntityModel<T> {
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
+
+public class birdzing_ben extends EntityModel<LivingEntityRenderState> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "birdzing_ben"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Identifier.fromNamespaceAndPath("zingsbirdzing", "birdzing_ben"), "main");
 	private final ModelPart body;
 	private final ModelPart head;
 	private final ModelPart left_wing_lower;
@@ -20,6 +35,7 @@ public class birdzing_ben<T extends Entity> extends EntityModel<T> {
 	private final ModelPart tail;
 
 	public birdzing_ben(ModelPart root) {
+		super(root);
 		this.body = root.getChild("body");
 		this.head = this.body.getChild("head");
 		this.left_wing_lower = this.body.getChild("left_wing_lower");
@@ -73,7 +89,7 @@ public class birdzing_ben<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(LivingEntityRenderState state) {
 
 	}
 

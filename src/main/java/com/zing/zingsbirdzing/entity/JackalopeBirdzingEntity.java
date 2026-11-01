@@ -39,6 +39,8 @@ import com.zing.zingsbirdzing.procedures.JackalopeBirdzingRightclickedOnEntityPr
 import com.zing.zingsbirdzing.procedures.BirdzingPlaybackConditionFlyProcedure;
 import com.zing.zingsbirdzing.procedures.BirdzingEntityIsHurtProcedure;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.ai.VariantFleeBehavior;
+import net.minecraft.world.entity.monster.Ravager;
 
 public class JackalopeBirdzingEntity extends TamableAnimal {
 	public final AnimationState animationState0 = new AnimationState();
@@ -177,6 +179,9 @@ public class JackalopeBirdzingEntity extends TamableAnimal {
 	@Override
 	public void tick() {
 		super.tick();
+		if (!this.level().isClientSide() && this.tickCount % 10 == 0) {
+			VariantFleeBehavior.fleeNearby(this, Ravager.class, 16.0D);
+		}
 		if (this.level().isClientSide()) {
 			this.animationState0.animateWhen(true, this.tickCount);
 			this.animationState2.animateWhen(BirdzingPlaybackConditionFlyProcedure.execute(this), this.tickCount);

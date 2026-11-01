@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": ["forest", "birch_forest", "old_growth_birch_forest", "jungle"],
+  "spawners": {
+    "type": "zingsbirdzing:camo_birdzing",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

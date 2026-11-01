@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": ["crimson_forest", "nether_wastes"],
+  "spawners": {
+    "type": "zingsbirdzing:piglin_birdzing",
+    "weight": 6,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

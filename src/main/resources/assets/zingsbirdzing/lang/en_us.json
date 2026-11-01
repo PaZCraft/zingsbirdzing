@@ -86,5 +86,17 @@
   "painting.zings_birdzing.wanderer_birdzing.author": "ZiNG! Studios",
   "painting.zings_birdzing.wanderer_birdzing.title": "Wanderer Birdzing",
   "painting.zings_birdzing.graham_birdzing.title": "Graham Birdzing",
-  "painting.zings_birdzing.graham_birdzing.author": "ZiNG! Studios"
+  "painting.zings_birdzing.graham_birdzing.author": "ZiNG! Studios",
+  "entity.zingsbirdzing.ben_birdzing": "Ben Birdzing",
+  "entity.zingsbirdzing.camo_birdzing": "Camo Birdzing",
+  "entity.zingsbirdzing.christmas_birdzing": "Christmas Birdzing",
+  "entity.zingsbirdzing.creeper_birdzing": "Creeper Birdzing",
+  "entity.zingsbirdzing.future_birdzing": "Future Birdzing",
+  "entity.zingsbirdzing.piglin_birdzing": "Piglin Birdzing",
+  "entity.zingsbirdzing.wither_birdzing": "Wither Birdzing",
+  "dialogue.zingsbirdzing.ben_birdzing.1": "Ben: Hello there!",
+  "dialogue.zingsbirdzing.ben_birdzing.2": "Ben: Have you seen any interesting birds lately?",
+  "dialogue.zingsbirdzing.ben_birdzing.3": "Ben: The Birdzings are looking particularly chirpy today.",
+  "dialogue.zingsbirdzing.ben_birdzing.4": "Ben: I wonder what Birdzings dream about.",
+  "dialogue.zingsbirdzing.ben_birdzing.5": "Ben: Thanks for stopping by!"
 }

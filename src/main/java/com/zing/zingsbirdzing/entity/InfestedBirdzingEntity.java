@@ -42,6 +42,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.BlockPos;
 
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.ai.VariantFleeBehavior;
 
 public class InfestedBirdzingEntity extends TamableAnimal {
 	public final AnimationState animationState0 = new AnimationState();
@@ -74,15 +75,13 @@ public class InfestedBirdzingEntity extends TamableAnimal {
 		this.targetSelector.addGoal(11, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
 		this.goalSelector.addGoal(14, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
-		this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, Silverfish.class, false, false));
-		this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Endermite.class, false, false));
-		this.goalSelector.addGoal(17, new RemoveBlockGoal(Blocks.INFESTED_STONE, this, 1, (int) 3));
-		this.goalSelector.addGoal(18, new RemoveBlockGoal(Blocks.INFESTED_COBBLESTONE, this, 1, (int) 3));
-		this.goalSelector.addGoal(19, new RemoveBlockGoal(Blocks.INFESTED_STONE_BRICKS, this, 1, (int) 3));
-		this.goalSelector.addGoal(20, new RemoveBlockGoal(Blocks.INFESTED_MOSSY_STONE_BRICKS, this, 1, (int) 3));
-		this.goalSelector.addGoal(21, new RemoveBlockGoal(Blocks.INFESTED_CRACKED_STONE_BRICKS, this, 1, (int) 3));
-		this.goalSelector.addGoal(22, new RemoveBlockGoal(Blocks.INFESTED_CHISELED_STONE_BRICKS, this, 1, (int) 3));
-		this.goalSelector.addGoal(23, new RemoveBlockGoal(Blocks.INFESTED_DEEPSLATE, this, 1, (int) 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_STONE, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_COBBLESTONE, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_STONE_BRICKS, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_MOSSY_STONE_BRICKS, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_CRACKED_STONE_BRICKS, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_CHISELED_STONE_BRICKS, this, 1, 3));
+		this.goalSelector.addGoal(1, new RemoveBlockGoal(Blocks.INFESTED_DEEPSLATE, this, 1, 3));
 	}
 
 	@Override
@@ -178,6 +177,10 @@ public class InfestedBirdzingEntity extends TamableAnimal {
 	@Override
 	public void tick() {
 		super.tick();
+		if (!this.level().isClientSide() && this.tickCount % 10 == 0) {
+			VariantFleeBehavior.fleeNearby(this, Silverfish.class, 12.0D);
+			VariantFleeBehavior.fleeNearby(this, Endermite.class, 12.0D);
+		}
 		if (this.level().isClientSide()) {
 			this.animationState0.animateWhen(true, this.tickCount);
 		}

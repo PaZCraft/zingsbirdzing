@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": ["plains", "sunflower_plains", "flower_forest"],
+  "spawners": {
+    "type": "zingsbirdzing:ben_birdzing",
+    "weight": 4,
+    "minCount": 1,
+    "maxCount": 2
+  }
+}

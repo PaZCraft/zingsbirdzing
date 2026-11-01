@@ -18,6 +18,9 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.AbstractThrownPotion;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
@@ -56,6 +59,9 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 
 	public SkeletonBirdzingEntity(EntityType<SkeletonBirdzingEntity> type, Level world) {
 		super(type, world);
+		if (!world.isClientSide()) {
+			this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.BOW));
+		}
 		xpReward = 0;
 		setNoAi(false);
 		setPersistenceRequired();
@@ -78,6 +84,7 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
+		this.targetSelector.addGoal(2, new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(5, new FloatGoal(this));
 		this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, (float) 0.5));
@@ -89,10 +96,10 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		this.goalSelector.addGoal(12, new BreedGoal(this, 1));
 		this.goalSelector.addGoal(14, new TemptGoal(this, 1, (itemstack -> itemstack.is(ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))), false));
 		this.goalSelector.addGoal(15, new RestrictSunGoal(this));
-		this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 90, 10f) {
+		this.goalSelector.addGoal(1, new RangedBowAttackGoal<SkeletonBirdzingEntity>(this, 1.25D, 20, 15.0F) {
 			@Override
-			public boolean canContinueToUse() {
-				return this.canUse();
+			protected boolean isHoldingBow() {
+				return SkeletonBirdzingEntity.this.getItemBySlot(EquipmentSlot.HEAD).is(Items.BOW);
 			}
 		});
 	}
