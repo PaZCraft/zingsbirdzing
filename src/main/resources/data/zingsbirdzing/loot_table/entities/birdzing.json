@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "zings_birdzing:birdzing_feather",
+          "name": "zingsbirdzing:birdzing_feather",
           "weight": 1,
           "functions": [
             {
@@ -25,7 +25,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "zings_birdzing:birdzing_head",
+          "name": "zingsbirdzing:birdzing_head",
           "weight": 1,
           "functions": [
             {
@@ -78,5 +78,5 @@
       ]
     }
   ],
-  "random_sequence": "zings_birdzing:entities/fire_birdzing"
+  "random_sequence": "zingsbirdzing:entities/birdzing"
 }

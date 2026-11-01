@@ -11,14 +11,23 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 
 import com.zing.zingsbirdzing.procedures.BirdzingEggOnBlockRightclickedProcedure;
+import com.zing.zingsbirdzing.entity.BirdzingEntity;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 import java.util.function.Function;
 
@@ -27,8 +36,38 @@ public class BirdzingEggBlock extends Block {
 	private final Function<BlockState, VoxelShape> shapes = this.makeShapes();
 
 	public BirdzingEggBlock(BlockBehaviour.Properties properties) {
-		super(properties.sound(SoundType.CALCITE).strength(1f, 10f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
+		super(properties.sound(SoundType.CALCITE).strength(1f, 10f).noOcclusion().randomTicks().isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(EGG_STAGES, 0));
+	}
+
+	@Override
+	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		int stage = state.getValue(EGG_STAGES);
+		if (stage == 3) {
+			hatch(level, pos);
+		} else if (random.nextInt(100) == 0) {
+			level.setBlock(pos, state.setValue(EGG_STAGES, stage + 1), 2);
+		}
+	}
+
+	public static boolean hatch(ServerLevel level, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		if (!state.is(com.zing.zingsbirdzing.init.ZingsBirdzingModBlocks.BIRDZING_EGG.get())
+				|| state.getValue(EGG_STAGES) != 3) {
+			return false;
+		}
+		level.removeBlock(pos, false);
+		Entity entity = ZingsBirdzingModEntities.BIRDZING.get().spawn(level, pos, EntitySpawnReason.MOB_SUMMONED);
+		if (!(entity instanceof BirdzingEntity baby)) {
+			level.setBlock(pos, state, 3);
+			return false;
+		}
+		baby.setYRot(level.getRandom().nextFloat() * 360.0F);
+		BirdzingEntity.registerHatchedBaby(level, pos, baby);
+		level.playSound(null, pos,
+				BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.turtle.egg_hatch")),
+				SoundSource.NEUTRAL, 1.0F, 1.0F);
+		return true;
 	}
 
 	private Function<BlockState, VoxelShape> makeShapes() {

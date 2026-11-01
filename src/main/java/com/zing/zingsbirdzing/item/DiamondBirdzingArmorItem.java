@@ -16,7 +16,7 @@ public class DiamondBirdzingArmorItem extends Item {
 	public DiamondBirdzingArmorItem(Item.Properties properties) {
 		super(properties.stacksTo(1)
 				.attributes(ItemAttributeModifiers.builder()
-						.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "diamond_birdzing_armor_0"), 11, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY)
-						.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "diamond_birdzing_armor_1"), 2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY).build()));
+						.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "diamond_birdzing_armor_0"), 11, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY)
+						.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "diamond_birdzing_armor_1"), 2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY).build()));
 	}
 }

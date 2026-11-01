@@ -15,6 +15,6 @@ import net.minecraft.resources.Identifier;
 public class ChainmailBirdzingArmorItem extends Item {
 	public ChainmailBirdzingArmorItem(Item.Properties properties) {
 		super(properties.stacksTo(1).attributes(ItemAttributeModifiers.builder()
-				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "chainmail_birdzing_armor_0"), 5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY).build()));
+				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "chainmail_birdzing_armor_0"), 5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY).build()));
 	}
 }

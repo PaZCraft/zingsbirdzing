@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "zings_birdzing:item/birdzing_spawn_egg"
-  }
-}

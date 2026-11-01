@@ -1,67 +1,35 @@
 package com.zing.zingsbirdzing.item;
 
-import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.world.level.Level;
 
 import com.zing.zingsbirdzing.entity.ZingArrowProjectileEntity;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
-public class ZingArrowItem extends Item {
+public class ZingArrowItem extends ArrowItem {
 	public ZingArrowItem(Item.Properties properties) {
 		super(properties.rarity(Rarity.RARE).fireResistant());
 	}
 
 	@Override
-	public ItemUseAnimation getUseAnimation(ItemStack itemstack) {
-		return ItemUseAnimation.BOW;
+	public AbstractArrow createArrow(Level level, ItemStack itemStack, LivingEntity owner, ItemStack firedFromWeapon) {
+		return new ZingArrowProjectileEntity(
+				ZingsBirdzingModEntities.ZING_ARROW_PROJECTILE.get(), owner, level, firedFromWeapon);
 	}
 
 	@Override
-	public InteractionResult use(Level world, Player entity, InteractionHand hand) {
-		InteractionResult ar = InteractionResult.FAIL;
-		if (entity.getAbilities().instabuild || findAmmo(entity) != ItemStack.EMPTY) {
-			ar = InteractionResult.CONSUME;
-			entity.startUsingItem(hand);
-		}
-		return ar;
-	}
-
-	@Override
-	public boolean releaseUsing(ItemStack itemstack, Level world, LivingEntity entity, int time) {
-		if (!world.isClientSide() && entity instanceof ServerPlayer player) {
-			float pullingPower = BowItem.getPowerForTime(this.getUseDuration(itemstack, player) - time);
-			if (pullingPower < 0.1)
-				return false;
-			ItemStack stack = findAmmo(player);
-			if (player.getAbilities().instabuild || stack != ItemStack.EMPTY) {
-				ZingArrowProjectileEntity projectile = ZingArrowProjectileEntity.shoot(world, entity, world.getRandom(), pullingPower);
-				if (player.getAbilities().instabuild) {
-					projectile.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-				} else {
-					if (stack.isDamageableItem()) {
-						if (world instanceof ServerLevel serverLevel)
-							stack.hurtAndBreak(1, serverLevel, player, _stkprov -> {
-							});
-					} else {
-						stack.shrink(1);
-					}
-				}
-			}
-		}
-		return super.releaseUsing(itemstack, world, entity, time);
-	}
-
-	private ItemStack findAmmo(Player player) {
-		return new ItemStack(ZingArrowProjectileEntity.PROJECTILE_ITEM.getItem());
+	public Projectile asProjectile(Level level, Position position, ItemStack itemStack, Direction direction) {
+		ZingArrowProjectileEntity arrow = new ZingArrowProjectileEntity(
+				ZingsBirdzingModEntities.ZING_ARROW_PROJECTILE.get(),
+				position.x(), position.y(), position.z(), level, null);
+		arrow.pickup = AbstractArrow.Pickup.ALLOWED;
+		return arrow;
 	}
 }

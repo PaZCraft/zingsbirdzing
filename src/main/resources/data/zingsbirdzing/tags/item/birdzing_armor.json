@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "zingsbirdzing:leather_birdzing_armor",
+    "zingsbirdzing:chainmail_birdzing_armor",
+    "zingsbirdzing:iron_birdzing_armor",
+    "zingsbirdzing:copper_birdzing_armor",
+    "zingsbirdzing:golden_birdzing_armor",
+    "zingsbirdzing:diamond_birdzing_armor",
+    "zingsbirdzing:netherite_birdzing_armor"
+  ]
+}

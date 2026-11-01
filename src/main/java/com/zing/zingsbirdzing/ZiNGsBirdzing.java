@@ -3,6 +3,8 @@ package com.zing.zingsbirdzing;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
+import com.zing.zingsbirdzing.ai.GrabAttackGoalRegistration;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModSounds;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -74,11 +76,13 @@ public class ZiNGsBirdzing {
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
+        ZingsBirdzingModSounds.REGISTRY.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ZiNGsBirdzing) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.addListener(GrabAttackGoalRegistration::onEntityJoinLevel);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

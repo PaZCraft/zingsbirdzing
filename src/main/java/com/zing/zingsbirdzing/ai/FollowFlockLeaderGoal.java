@@ -17,25 +17,33 @@ public class FollowFlockLeaderGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (this.mob.getEggPos().isPresent()) return false;
-		if (this.mob.getFlockLeader() != null && this.mob.getFlockLeader().isAlive()) return true;
-
-		List<BirdzingEntity> nearbyBirdzings = this.mob.level().getEntitiesOfClass(
-				BirdzingEntity.class, this.mob.getBoundingBox().inflate(32.0D));
-		for (BirdzingEntity candidate : nearbyBirdzings) {
-			if (candidate != this.mob && candidate.getFlockLeader() == null) {
-				this.mob.setFlockLeader(candidate);
-				return true;
-			}
+		if (this.mob.getEggPos().isPresent()) {
+			return false;
 		}
-		return false;
+		BirdzingEntity leader = this.mob.getFlockLeader();
+		if (leader == null || !leader.isAlive()) {
+			this.mob.joinNearbyFlock();
+			leader = this.mob.getFlockLeader();
+		}
+		return leader != null && leader != this.mob && leader.isAlive();
 	}
 
 	@Override
 	public void tick() {
 		BirdzingEntity leader = this.mob.getFlockLeader();
-		if (leader != null && leader.isAlive() && this.mob.distanceToSqr(leader) > 25.0D) {
-			this.mob.getNavigation().moveTo(leader, 1.1D);
+		if (leader != null && leader.isAlive()) {
+			double distance = this.mob.distanceToSqr(leader);
+			if (distance > 16.0D) {
+				this.mob.getNavigation().moveTo(leader, 1.25D);
+			} else if (distance < 4.0D) {
+				this.mob.getNavigation().stop();
+			}
 		}
+	}
+
+	@Override
+	public boolean canContinueToUse() {
+		BirdzingEntity leader = this.mob.getFlockLeader();
+		return this.mob.getEggPos().isEmpty() && leader != null && leader.isAlive();
 	}
 }

@@ -1,17 +1,15 @@
 package com.zing.zingsbirdzing.procedures;
 
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
-
-import com.zing.zingsbirdzing.init.ZingsBirdzingModMenus;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModItems;
 
 public class BirdzingDisplayConditionArmorLeatherProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return (entity instanceof Player _plrSlotItem && _plrSlotItem.containerMenu instanceof ZingsBirdzingModMenus.MenuAccessor _menu0 ? _menu0.getSlots().get(0).getItem() : ItemStack.EMPTY).getItem() == ZingsBirdzingModItems.LEATHER_BIRDZING_ARMOR
-				.get();
+		return entity instanceof LivingEntity living
+				&& living.getItemBySlot(EquipmentSlot.BODY).is(ZingsBirdzingModItems.LEATHER_BIRDZING_ARMOR.get());
 	}
 }

@@ -1,0 +1,22 @@
+{
+  "parent": "zingsbirdzing:root",
+  "display": {
+    "icon": {
+      "id": "zingsbirdzing:birdzing_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.zingsbirdzing.the_rise.title"
+    },
+    "description": {
+      "translate": "advancements.zingsbirdzing.the_rise.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "grab_attack": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

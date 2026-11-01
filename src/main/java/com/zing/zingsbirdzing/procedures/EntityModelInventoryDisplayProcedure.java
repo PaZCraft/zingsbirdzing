@@ -9,6 +9,6 @@ import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
 
 public class EntityModelInventoryDisplayProcedure {
 	public static Entity execute(LevelAccessor world) {
-		return world instanceof Level _level ? ZingsBirdzingModEntities.FIRE_BIRDZING.get().create(_level, EntitySpawnReason.EVENT) : null;
+		return world instanceof Level _level ? ZingsBirdzingModEntities.BIRDZING.get().create(_level, EntitySpawnReason.EVENT) : null;
 	}
 }

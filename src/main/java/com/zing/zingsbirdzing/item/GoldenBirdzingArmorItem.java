@@ -16,7 +16,7 @@ import net.minecraft.resources.Identifier;
 public class GoldenBirdzingArmorItem extends Item {
 	public GoldenBirdzingArmorItem(Item.Properties properties) {
 		super(properties.stacksTo(1).attributes(ItemAttributeModifiers.builder()
-				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "golden_birdzing_armor_0"), 7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY).build()));
+				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "golden_birdzing_armor_0"), 7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY).build()));
 	}
 
 	@Override

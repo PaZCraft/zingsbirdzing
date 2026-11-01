@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#zingsbirdzing:can_perform_grab_attack",
+    "minecraft:shulker",
+    "minecraft:allay",
+    "minecraft:bat",
+    "minecraft:bee",
+    "minecraft:blaze",
+    "minecraft:ender_dragon",
+    "minecraft:ghast",
+    "minecraft:happy_ghast",
+    "minecraft:parrot",
+    "minecraft:phantom",
+    "minecraft:vex",
+    "minecraft:wither"
+  ]
+}

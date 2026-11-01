@@ -14,7 +14,7 @@ import com.zing.zingsbirdzing.client.renderer.*;
 public class ZingsBirdzingModEntityRenderers {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerEntityRenderer(ZingsBirdzingModEntities.FIRE_BIRDZING.get(), BirdzingRenderer::new);
+		event.registerEntityRenderer(ZingsBirdzingModEntities.BIRDZING.get(), BirdzingRenderer::new);
 		event.registerEntityRenderer(ZingsBirdzingModEntities.HEAVY_BIRDZING.get(), HeavyBirdzingRenderer::new);
 		event.registerEntityRenderer(ZingsBirdzingModEntities.WINGLESS_BIRDZING.get(), WinglessBirdzingRenderer::new);
 		event.registerEntityRenderer(ZingsBirdzingModEntities.TAILLESS_BIRDZING.get(), TaillessBirdzingRenderer::new);

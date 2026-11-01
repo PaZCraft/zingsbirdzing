@@ -19,6 +19,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.tags.ItemTags;
@@ -69,22 +70,22 @@ public class VillagerBirdzingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.villager.ambient"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.villager_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.villager.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.villager_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.villager.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.villager_birdzing.death"));
 	}
 
 	@Override
@@ -179,6 +180,16 @@ public class VillagerBirdzingEntity extends TamableAnimal {
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
 		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		builder = builder.add(Attributes.TEMPT_RANGE, 10);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
+	}
+
+	@Override
+	public boolean hurtServer(ServerLevel level, DamageSource damagesource, float amount) {
+		if (damagesource.is(DamageTypes.FALL)) {
+			return false;
+		}
+		return super.hurtServer(level, damagesource, amount);
 	}
 }

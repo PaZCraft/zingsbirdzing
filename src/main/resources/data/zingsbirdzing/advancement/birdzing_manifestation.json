@@ -1,0 +1,25 @@
+{
+  "parent": "zingsbirdzing:root",
+  "display": {
+    "icon": {
+      "id": "zingsbirdzing:birdzing_feather"
+    },
+    "title": {
+      "translate": "advancements.zingsbirdzing.birdzing_manifestation.title"
+    },
+    "description": {
+      "translate": "advancements.zingsbirdzing.birdzing_manifestation.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "all_variants_encountered": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

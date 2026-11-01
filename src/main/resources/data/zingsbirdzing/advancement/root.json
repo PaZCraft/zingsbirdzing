@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "id": "zingsbirdzing:birdzing_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.zingsbirdzing.root.title"
+    },
+    "description": {
+      "translate": "advancements.zingsbirdzing.root.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

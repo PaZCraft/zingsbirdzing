@@ -83,22 +83,22 @@ public class JackalopeBirdzingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.jackalope_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.jackalope_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.jackalope_birdzing.death"));
 	}
 
 	@Override
@@ -213,6 +213,8 @@ public class JackalopeBirdzingEntity extends TamableAnimal {
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
 		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		builder = builder.add(Attributes.TEMPT_RANGE, 10);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
 	}
 }

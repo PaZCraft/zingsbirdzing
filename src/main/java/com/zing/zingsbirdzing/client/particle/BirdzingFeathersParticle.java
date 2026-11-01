@@ -20,6 +20,7 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
     private final double xaFlowScale;
     private final double zaFlowScale;
     private final double swirlPeriod;
+    private final SpriteSet spriteSet;
 
 	public static BirdzingFeathersParticleProvider provider(SpriteSet spriteSet) {
 		return new BirdzingFeathersParticleProvider(spriteSet);
@@ -37,13 +38,19 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
 		}
 	}
 
-	private final SpriteSet spriteSet;
 	private float angularVelocity;
 	private float angularAcceleration;
 
+	protected BirdzingFeathersParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
+        this(level, x, y, z, sprites, 1.0F, 0.05F, true, true, 1.0F, 0.0F);
+        this.xd = xSpeed;
+        this.yd += ySpeed;
+        this.zd = zSpeed;
+    }
+
 	protected BirdzingFeathersParticle(ClientLevel level, double x, double y, double z, SpriteSet sprites, float fallAcceleration, float windBig, boolean swirl, boolean flowAway, float scale, float initialVelocity) {
         super(level, x, y, z);
-        this.setSprite(sprites.get(this.random.nextInt(12), 12));
+        this.spriteSet = sprites;
         this.rotSpeed = (float) Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
         float particleRandom = this.random.nextFloat();
         this.spinAcceleration = (float) Math.toRadians(this.random.nextBoolean() ? -5.0 : 5.0);
@@ -51,6 +58,7 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
         this.swirl = swirl;
         this.flowAway = flowAway;
         this.lifetime = INITIAL_LIFETIME;
+        this.setSpriteFromAge(sprites);
         this.gravity = fallAcceleration * 1.2F * ACCELERATION_SCALE;
         float size = scale * (this.random.nextBoolean() ? 0.05F : 0.075F);
         this.quadSize = size;
@@ -73,6 +81,7 @@ public class BirdzingFeathersParticle extends SingleQuadParticle {
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
+        this.setSpriteFromAge(this.spriteSet);
         if (this.lifetime-- <= 0) {
             this.remove();
         }

@@ -78,6 +78,16 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6, true) {
 			@Override
+			public boolean canUse() {
+				return !SkeletonBirdzingEntity.this.isHoldingBow() && super.canUse();
+			}
+
+			@Override
+			public boolean canContinueToUse() {
+				return !SkeletonBirdzingEntity.this.isHoldingBow() && super.canContinueToUse();
+			}
+
+			@Override
 			protected boolean canPerformAttack(LivingEntity entity) {
 				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
 			}
@@ -99,9 +109,13 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		this.goalSelector.addGoal(1, new RangedBowAttackGoal<SkeletonBirdzingEntity>(this, 1.25D, 20, 15.0F) {
 			@Override
 			protected boolean isHoldingBow() {
-				return SkeletonBirdzingEntity.this.getItemBySlot(EquipmentSlot.HEAD).is(Items.BOW);
+				return SkeletonBirdzingEntity.this.isHoldingBow();
 			}
 		});
+	}
+
+	private boolean isHoldingBow() {
+		return this.getItemBySlot(EquipmentSlot.HEAD).is(Items.BOW);
 	}
 
 	@Override
@@ -111,22 +125,22 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.skeleton_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.skeleton_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.skeleton_birdzing.death"));
 	}
 
 	@Override
@@ -163,6 +177,10 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+		InteractionResult armorResult = BirdzingArmorInteraction.handle(this, sourceentity, hand);
+		if (armorResult.consumesAction()) {
+			return armorResult;
+		}
 		ItemStack itemstack = sourceentity.getItemInHand(hand);
 		InteractionResult retval = InteractionResult.SUCCESS;
 		Item item = itemstack.getItem();
@@ -209,7 +227,7 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		Entity entity = this;
 		Level world = this.level();
 
-		BirdzingRightclickedOnEntitySkeletonProcedure.execute(world, x, y, z, entity, itemstack);
+		BirdzingRightclickedOnEntitySkeletonProcedure.execute(world, x, y, z, entity, sourceentity, itemstack);
 		return retval;
 	}
 
@@ -225,7 +243,14 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 
 	@Override
 	public void performRangedAttack(LivingEntity target, float flval) {
-		ZingArrowProjectileEntity.shoot(this, target);
+		if (this.isHoldingBow()) {
+			ZingArrowProjectileEntity.shoot(this, target);
+		}
+	}
+
+	@Override
+	public boolean canAgeUp() {
+		return false;
 	}
 
 	@Override
@@ -254,6 +279,8 @@ public class SkeletonBirdzingEntity extends TamableAnimal implements RangedAttac
 		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1);
 		builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5);
 		builder = builder.add(Attributes.TEMPT_RANGE, 10);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
 	}
 }

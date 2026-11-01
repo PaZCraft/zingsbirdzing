@@ -8,6 +8,7 @@ public class BirdzingPlaybackConditionSitProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return (entity instanceof BirdzingEntity _datEntL0 && _datEntL0.getEntityData().get(BirdzingEntity.IS_SITTING)) == true;
+		return entity instanceof BirdzingEntity birdzing
+				&& (birdzing.isPassenger() || birdzing.getEntityData().get(BirdzingEntity.IS_SITTING));
 	}
 }

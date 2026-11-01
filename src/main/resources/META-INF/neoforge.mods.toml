@@ -1,43 +1,30 @@
 modLoader="javafml"
 loaderVersion="[4,)"
-license="Creative Commons 2.0"
+license="All Rights Reserved"
 issueTrackerURL="https://github.com/PaZCraft/zingsbirdzing/issues"
 [[mods]]
-modId="zings_birdzing"
-version="1.6.0"
+modId="zingsbirdzing"
+version="1.9.0"
 displayName="ZiNG's Birdzing"
-displayURL=""
+displayURL="https://www.curseforge.com/minecraft/mc-mods/zings-birdzing"
 authors="ZiNGStudios"
 credits="ZiNGStudios"
 description="Adds Birdzing from ZiNG's Creatures"
 logoFile=""
-enumExtensions="META-INF/enumextensions.json"
-
-# Start of user code block mod configuration
-# End of user code block mod configuration
 
 [[mixins]]
-    config = "zings_birdzing.mixins.json"
+    config = "zingsbirdzing.mixins.json"
 
-# Start of user code block custom mixins
-# End of user code block custom mixins
-
-[[dependencies.zings_birdzing]]
+[[dependencies.zingsbirdzing]]
     modId="neoforge"
     type="required"
-    versionRange="[26.3)"
+    versionRange="[26.3.0.58-beta,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.zings_birdzing]]
+[[dependencies.zingsbirdzing]]
     modId="minecraft"
     type="required"
     versionRange="[26.3]"
     ordering="AFTER"
     side="BOTH"
-
-
-
-
-# Start of user code block dependencies configuration
-# End of user code block dependencies configuration

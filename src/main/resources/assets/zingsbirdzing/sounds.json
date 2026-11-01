@@ -3,27 +3,27 @@
     "subtitle": "subtitles.entity.birdzing.idle",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_idle_6",
+        "name": "zingsbirdzing:birdzing_idle_6",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_idle_5",
+        "name": "zingsbirdzing:birdzing_idle_5",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_idle_4",
+        "name": "zingsbirdzing:birdzing_idle_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_idle_3",
+        "name": "zingsbirdzing:birdzing_idle_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_idle_2",
+        "name": "zingsbirdzing:birdzing_idle_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_idle_1",
+        "name": "zingsbirdzing:birdzing_idle_1",
         "stream": false
       }
     ]
@@ -33,15 +33,15 @@
     "subtitle": "subtitles.entity.chirpzing.idle",
     "sounds": [
       {
-        "name": "zings_birdzing:chirpzing_idle_1",
+        "name": "zingsbirdzing:chirpzing_idle_1",
         "stream": false
       },
       {
-        "name": "zings_birdzing:chirpzing_idle_2",
+        "name": "zingsbirdzing:chirpzing_idle_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:chirpzing_idle_3",
+        "name": "zingsbirdzing:chirpzing_idle_3",
         "stream": false
       }
     ]
@@ -51,19 +51,19 @@
     "subtitle": "subtitles.entity.birdzing.hurt",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_hurt_4",
+        "name": "zingsbirdzing:birdzing_hurt_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_hurt_3",
+        "name": "zingsbirdzing:birdzing_hurt_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_hurt_2",
+        "name": "zingsbirdzing:birdzing_hurt_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_hurt_1",
+        "name": "zingsbirdzing:birdzing_hurt_1",
         "stream": false
       }
     ]
@@ -73,11 +73,11 @@
     "subtitle": "subtitles.entity.chirpzing.hurt",
     "sounds": [
       {
-        "name": "zings_birdzing:chirpzing_hurt_1",
+        "name": "zingsbirdzing:chirpzing_hurt_1",
         "stream": false
       },
       {
-        "name": "zings_birdzing:chirpzing_hurt_2",
+        "name": "zingsbirdzing:chirpzing_hurt_2",
         "stream": false
       }
     ]
@@ -87,19 +87,19 @@
     "subtitle": "subtitles.entity.birdzing.angry",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_angry_4",
+        "name": "zingsbirdzing:birdzing_angry_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_angry_3",
+        "name": "zingsbirdzing:birdzing_angry_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_angry_2",
+        "name": "zingsbirdzing:birdzing_angry_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_angry_1",
+        "name": "zingsbirdzing:birdzing_angry_1",
         "stream": false
       }
     ]
@@ -109,11 +109,11 @@
     "subtitle": "subtitles.entity.chirpzing.angry",
     "sounds": [
       {
-        "name": "zings_birdzing:chirpzing_angry_1",
+        "name": "zingsbirdzing:chirpzing_angry_1",
         "stream": false
       },
       {
-        "name": "zings_birdzing:chirpzing_angry_2",
+        "name": "zingsbirdzing:chirpzing_angry_2",
         "stream": false
       }
     ]
@@ -123,19 +123,19 @@
     "subtitle": "subtitles.entity.birdzing.step",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_step_4",
+        "name": "zingsbirdzing:birdzing_step_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_step_3",
+        "name": "zingsbirdzing:birdzing_step_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_step_2",
+        "name": "zingsbirdzing:birdzing_step_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_step_1",
+        "name": "zingsbirdzing:birdzing_step_1",
         "stream": false
       }
     ]
@@ -144,11 +144,11 @@
     "subtitle": "subtitles.entity.birdzing.death",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_death_2",
+        "name": "zingsbirdzing:birdzing_death_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_death_1",
+        "name": "zingsbirdzing:birdzing_death_1",
         "stream": false
       }
     ]
@@ -158,7 +158,7 @@
     "subtitle": "subtitles.entity.chirpzing.death",
     "sounds": [
       {
-        "name": "zings_birdzing:chirpzing_death",
+        "name": "zingsbirdzing:chirpzing_death",
         "stream": false
       }
     ]
@@ -168,19 +168,19 @@
     "subtitle": "subtitles.entity.birdzing.eat",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_eat_4",
+        "name": "zingsbirdzing:birdzing_eat_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_eat_3",
+        "name": "zingsbirdzing:birdzing_eat_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_eat_2",
+        "name": "zingsbirdzing:birdzing_eat_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_eat_1",
+        "name": "zingsbirdzing:birdzing_eat_1",
         "stream": false
       }
     ]
@@ -190,7 +190,32 @@
     "subtitle": "subtitles.entity.birdzing.flap",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_flap_loop",
+        "name": "zingsbirdzing:birdzing_flap_loop",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.fly": {
+    "subtitle": "subtitles.entity.birdzing.fly",
+    "sounds": [
+      {
+        "name": "zingsbirdzing:birdzing_flap_loop",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.armor_equip": {
+    "sounds": [
+      {
+        "name": "minecraft:item.armor.equip_generic",
+        "stream": false
+      }
+    ]
+  },
+  "entity.birdzing.armor_unequip": {
+    "sounds": [
+      {
+        "name": "minecraft:item.armor.equip_generic",
         "stream": false
       }
     ]
@@ -200,19 +225,19 @@
     "subtitle": "subtitles.entity.birdzing.attack",
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_attack_4",
+        "name": "zingsbirdzing:birdzing_attack_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_attack_2",
+        "name": "zingsbirdzing:birdzing_attack_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_attack_3",
+        "name": "zingsbirdzing:birdzing_attack_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:birdzing_attack_1",
+        "name": "zingsbirdzing:birdzing_attack_1",
         "stream": false
       }
     ]
@@ -222,27 +247,27 @@
     "subtitle": "subtitles.entity.zingbird.idle",
     "sounds": [
       {
-        "name": "zings_birdzing:zingbird_idle_6",
+        "name": "zingsbirdzing:zingbird_idle_6",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_idle_5",
+        "name": "zingsbirdzing:zingbird_idle_5",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_idle_4",
+        "name": "zingsbirdzing:zingbird_idle_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_idle_3",
+        "name": "zingsbirdzing:zingbird_idle_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_idle_2",
+        "name": "zingsbirdzing:zingbird_idle_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_idle_1",
+        "name": "zingsbirdzing:zingbird_idle_1",
         "stream": false
       }
     ]
@@ -251,19 +276,19 @@
     "subtitle": "subtitles.entity.zingbird.hurt",
     "sounds": [
       {
-        "name": "zings_birdzing:zingbird_hurt_4",
+        "name": "zingsbirdzing:zingbird_hurt_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_hurt_3",
+        "name": "zingsbirdzing:zingbird_hurt_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_hurt_2",
+        "name": "zingsbirdzing:zingbird_hurt_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_hurt_1",
+        "name": "zingsbirdzing:zingbird_hurt_1",
         "stream": false
       }
     ]
@@ -272,19 +297,19 @@
     "subtitle": "subtitles.entity.zingbird.angry",
     "sounds": [
       {
-        "name": "zings_birdzing:zingbird_angry_4",
+        "name": "zingsbirdzing:zingbird_angry_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_angry_3",
+        "name": "zingsbirdzing:zingbird_angry_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_angry_2",
+        "name": "zingsbirdzing:zingbird_angry_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_angry_1",
+        "name": "zingsbirdzing:zingbird_angry_1",
         "stream": false
       }
     ]
@@ -293,11 +318,11 @@
     "subtitle": "subtitles.entity.zingbird.death",
     "sounds": [
       {
-        "name": "zings_birdzing:zingbird_death_2",
+        "name": "zingsbirdzing:zingbird_death_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zingbird_death_1",
+        "name": "zingsbirdzing:zingbird_death_1",
         "stream": false
       }
     ]
@@ -306,27 +331,27 @@
     "subtitle": "subtitles.entity.heavy_birdzing.idle",
     "sounds": [
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_6",
+        "name": "zingsbirdzing:heavy_birdzing_idle_6",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_5",
+        "name": "zingsbirdzing:heavy_birdzing_idle_5",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_4",
+        "name": "zingsbirdzing:heavy_birdzing_idle_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_3",
+        "name": "zingsbirdzing:heavy_birdzing_idle_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_2",
+        "name": "zingsbirdzing:heavy_birdzing_idle_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_idle_1",
+        "name": "zingsbirdzing:heavy_birdzing_idle_1",
         "stream": false
       }
     ]
@@ -335,19 +360,19 @@
     "subtitle": "subtitles.entity.heavy_birdzing.hurt",
     "sounds": [
       {
-        "name": "zings_birdzing:heavy_birdzing_hurt_4",
+        "name": "zingsbirdzing:heavy_birdzing_hurt_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_hurt_3",
+        "name": "zingsbirdzing:heavy_birdzing_hurt_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_hurt_2",
+        "name": "zingsbirdzing:heavy_birdzing_hurt_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_hurt_1",
+        "name": "zingsbirdzing:heavy_birdzing_hurt_1",
         "stream": false
       }
     ]
@@ -356,19 +381,19 @@
     "subtitle": "subtitles.entity.heavy_birdzing.angry",
     "sounds": [
       {
-        "name": "zings_birdzing:heavy_birdzing_angry_4",
+        "name": "zingsbirdzing:heavy_birdzing_angry_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_angry_2",
+        "name": "zingsbirdzing:heavy_birdzing_angry_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_angry_3",
+        "name": "zingsbirdzing:heavy_birdzing_angry_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_angry_1",
+        "name": "zingsbirdzing:heavy_birdzing_angry_1",
         "stream": false
       }
     ]
@@ -377,11 +402,11 @@
     "subtitle": "subtitles.entity.heavy_birdzing.death",
     "sounds": [
       {
-        "name": "zings_birdzing:heavy_birdzing_death_2",
+        "name": "zingsbirdzing:heavy_birdzing_death_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:heavy_birdzing_death_1",
+        "name": "zingsbirdzing:heavy_birdzing_death_1",
         "stream": false
       }
     ]
@@ -390,27 +415,27 @@
     "subtitle": "subtitles.entity.long_birdzing.idle",
     "sounds": [
       {
-        "name": "zings_birdzing:long_birdzing_idle_6",
+        "name": "zingsbirdzing:long_birdzing_idle_6",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_idle_5",
+        "name": "zingsbirdzing:long_birdzing_idle_5",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_idle_4",
+        "name": "zingsbirdzing:long_birdzing_idle_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_idle_3",
+        "name": "zingsbirdzing:long_birdzing_idle_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_idle_2",
+        "name": "zingsbirdzing:long_birdzing_idle_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_idle_1",
+        "name": "zingsbirdzing:long_birdzing_idle_1",
         "stream": false
       }
     ]
@@ -419,19 +444,19 @@
     "subtitle": "subtitles.entity.long_birdzing.hurt",
     "sounds": [
       {
-        "name": "zings_birdzing:long_birdzing_hurt_4",
+        "name": "zingsbirdzing:long_birdzing_hurt_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_hurt_3",
+        "name": "zingsbirdzing:long_birdzing_hurt_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_hurt_2",
+        "name": "zingsbirdzing:long_birdzing_hurt_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_hurt_1",
+        "name": "zingsbirdzing:long_birdzing_hurt_1",
         "stream": false
       }
     ]
@@ -440,19 +465,19 @@
     "subtitle": "subtitles.entity.long_birdzing.angry",
     "sounds": [
       {
-        "name": "zings_birdzing:long_birdzing_angry_4",
+        "name": "zingsbirdzing:long_birdzing_angry_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_angry_3",
+        "name": "zingsbirdzing:long_birdzing_angry_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_angry_2",
+        "name": "zingsbirdzing:long_birdzing_angry_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_angry_1",
+        "name": "zingsbirdzing:long_birdzing_angry_1",
         "stream": false
       }
     ]
@@ -461,11 +486,11 @@
     "subtitle": "subtitles.entity.long_birdzing.death",
     "sounds": [
       {
-        "name": "zings_birdzing:long_birdzing_death_2",
+        "name": "zingsbirdzing:long_birdzing_death_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:long_birdzing_death_1",
+        "name": "zingsbirdzing:long_birdzing_death_1",
         "stream": false
       }
     ]
@@ -474,19 +499,19 @@
     "subtitle": "subtitles.entity.zing_arrow.impact",
     "sounds": [
       {
-        "name": "zings_birdzing:zing_arrow_impact_4",
+        "name": "zingsbirdzing:zing_arrow_impact_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_impact_3",
+        "name": "zingsbirdzing:zing_arrow_impact_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_impact_2",
+        "name": "zingsbirdzing:zing_arrow_impact_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_impact_1",
+        "name": "zingsbirdzing:zing_arrow_impact_1",
         "stream": false
       }
     ]
@@ -495,19 +520,19 @@
     "subtitle": "subtitles.entity.zing_arrow.shot",
     "sounds": [
       {
-        "name": "zings_birdzing:zing_arrow_shot_4",
+        "name": "zingsbirdzing:zing_arrow_shot_4",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_shot_3",
+        "name": "zingsbirdzing:zing_arrow_shot_3",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_shot_2",
+        "name": "zingsbirdzing:zing_arrow_shot_2",
         "stream": false
       },
       {
-        "name": "zings_birdzing:zing_arrow_shot_1",
+        "name": "zingsbirdzing:zing_arrow_shot_1",
         "stream": false
       }
     ]
@@ -515,9 +540,141 @@
   "record.birdzing_dance": {
     "sounds": [
       {
-        "name": "zings_birdzing:birdzing_dance",
+        "name": "zingsbirdzing:birdzing_dance",
         "stream": true
       }
     ]
+  },
+  "entity.ancient_birdzing.idle": {
+    "subtitle": "subtitles.entity.ancient_birdzing.idle",
+    "sounds": ["zingsbirdzing:ancient_birdzing_idle_1", "zingsbirdzing:ancient_birdzing_idle_2", "zingsbirdzing:ancient_birdzing_idle_3", "zingsbirdzing:ancient_birdzing_idle_4", "zingsbirdzing:ancient_birdzing_idle_5"]
+  },
+  "entity.ancient_birdzing.hurt": {
+    "subtitle": "subtitles.entity.ancient_birdzing.hurt",
+    "sounds": ["zingsbirdzing:ancient_birdzing_hurt_1", "zingsbirdzing:ancient_birdzing_hurt_2", "zingsbirdzing:ancient_birdzing_hurt_3", "zingsbirdzing:ancient_birdzing_hurt_4"]
+  },
+  "entity.ancient_birdzing.death": {
+    "subtitle": "subtitles.entity.ancient_birdzing.death",
+    "sounds": ["zingsbirdzing:ancient_birdzing_death_1", "zingsbirdzing:ancient_birdzing_death_2"]
+  },
+  "entity.ancient_birdzing.angry": {
+    "subtitle": "subtitles.entity.ancient_birdzing.angry",
+    "sounds": ["zingsbirdzing:ancient_birdzing_angry_1", "zingsbirdzing:ancient_birdzing_angry_2", "zingsbirdzing:ancient_birdzing_angry_3", "zingsbirdzing:ancient_birdzing_angry_4"]
+  },
+  "entity.ancient_birdzing.attack": {
+    "subtitle": "subtitles.entity.ancient_birdzing.attack",
+    "sounds": ["zingsbirdzing:ancient_birdzing_attack_1", "zingsbirdzing:ancient_birdzing_attack_2"]
+  },
+  "entity.halloween_birdzing.idle": {
+    "subtitle": "subtitles.entity.halloween_birdzing.idle",
+    "sounds": ["zingsbirdzing:halloween_birdzing_idle_1", "zingsbirdzing:halloween_birdzing_idle_2", "zingsbirdzing:halloween_birdzing_idle_3", "zingsbirdzing:halloween_birdzing_idle_4"]
+  },
+  "entity.halloween_birdzing.hurt": {
+    "subtitle": "subtitles.entity.halloween_birdzing.hurt",
+    "sounds": ["zingsbirdzing:halloween_birdzing_hurt_1", "zingsbirdzing:halloween_birdzing_hurt_2", "zingsbirdzing:halloween_birdzing_hurt_3"]
+  },
+  "entity.halloween_birdzing.death": {
+    "subtitle": "subtitles.entity.halloween_birdzing.death",
+    "sounds": ["zingsbirdzing:halloween_birdzing_death"]
+  },
+  "entity.halloween_birdzing.attack": {
+    "subtitle": "subtitles.entity.halloween_birdzing.attack",
+    "sounds": ["zingsbirdzing:halloween_birdzing_attack_1", "zingsbirdzing:halloween_birdzing_attack_2"]
+  },
+  "entity.infested_birdzing.idle": {
+    "subtitle": "subtitles.entity.infested_birdzing.idle",
+    "sounds": ["zingsbirdzing:infested_birdzing_idle_1", "zingsbirdzing:infested_birdzing_idle_2", "zingsbirdzing:infested_birdzing_idle_3", "zingsbirdzing:infested_birdzing_idle_4"]
+  },
+  "entity.infested_birdzing.hurt": {
+    "subtitle": "subtitles.entity.infested_birdzing.hurt",
+    "sounds": ["zingsbirdzing:infested_birdzing_hurt_1", "zingsbirdzing:infested_birdzing_hurt_2", "zingsbirdzing:infested_birdzing_hurt_3"]
+  },
+  "entity.infested_birdzing.death": {
+    "subtitle": "subtitles.entity.infested_birdzing.death",
+    "sounds": ["zingsbirdzing:infested_birdzing_death"]
+  },
+  "entity.jackalope_birdzing.idle": {
+    "subtitle": "subtitles.entity.jackalope_birdzing.idle",
+    "sounds": ["zingsbirdzing:jackalope_birdzing_idle_1", "zingsbirdzing:jackalope_birdzing_idle_2", "zingsbirdzing:jackalope_birdzing_idle_3", "zingsbirdzing:jackalope_birdzing_idle_4"]
+  },
+  "entity.jackalope_birdzing.hurt": {
+    "subtitle": "subtitles.entity.jackalope_birdzing.hurt",
+    "sounds": ["zingsbirdzing:jackalope_birdzing_hurt_1", "zingsbirdzing:jackalope_birdzing_hurt_2", "zingsbirdzing:jackalope_birdzing_hurt_3"]
+  },
+  "entity.jackalope_birdzing.death": {
+    "subtitle": "subtitles.entity.jackalope_birdzing.death",
+    "sounds": ["zingsbirdzing:jackalope_birdzing_death"]
+  },
+  "entity.jackalope_birdzing.attack": {
+    "subtitle": "subtitles.entity.jackalope_birdzing.attack",
+    "sounds": ["zingsbirdzing:jackalope_birdzing_attack_1", "zingsbirdzing:jackalope_birdzing_attack_2", "zingsbirdzing:jackalope_birdzing_attack_3"]
+  },
+  "entity.ominous_birdzing.idle": {
+    "subtitle": "subtitles.entity.ominous_birdzing.idle",
+    "sounds": ["zingsbirdzing:ominous_birdzing_idle"]
+  },
+  "entity.ominous_birdzing.hurt": {
+    "subtitle": "subtitles.entity.ominous_birdzing.hurt",
+    "sounds": ["zingsbirdzing:ominous_birdzing_hurt_1", "zingsbirdzing:ominous_birdzing_hurt_2", "zingsbirdzing:ominous_birdzing_hurt_3"]
+  },
+  "entity.ominous_birdzing.death": {
+    "subtitle": "subtitles.entity.ominous_birdzing.death",
+    "sounds": ["zingsbirdzing:ominous_birdzing_death_1", "zingsbirdzing:ominous_birdzing_death_2"]
+  },
+  "entity.ominous_birdzing.celebrate": {
+    "subtitle": "subtitles.entity.ominous_birdzing.celebrate",
+    "sounds": ["zingsbirdzing:ominous_birdzing_celebrate_1", "zingsbirdzing:ominous_birdzing_celebrate_2", "zingsbirdzing:ominous_birdzing_celebrate_3", "zingsbirdzing:ominous_birdzing_celebrate_4"]
+  },
+  "entity.skeleton_birdzing.idle": {
+    "subtitle": "subtitles.entity.skeleton_birdzing.idle",
+    "sounds": ["zingsbirdzing:skeleton_birdzing_idle_1", "zingsbirdzing:skeleton_birdzing_idle_2", "zingsbirdzing:skeleton_birdzing_idle_3", "zingsbirdzing:skeleton_birdzing_idle_4"]
+  },
+  "entity.skeleton_birdzing.hurt": {
+    "subtitle": "subtitles.entity.skeleton_birdzing.hurt",
+    "sounds": ["zingsbirdzing:skeleton_birdzing_hurt_1", "zingsbirdzing:skeleton_birdzing_hurt_2", "zingsbirdzing:skeleton_birdzing_hurt_3", "zingsbirdzing:skeleton_birdzing_hurt_4"]
+  },
+  "entity.skeleton_birdzing.death": {
+    "subtitle": "subtitles.entity.skeleton_birdzing.death",
+    "sounds": ["zingsbirdzing:skeleton_birdzing_death_1", "zingsbirdzing:skeleton_birdzing_death_2"]
+  },
+  "entity.skeleton_birdzing.angry": {
+    "subtitle": "subtitles.entity.skeleton_birdzing.angry",
+    "sounds": ["zingsbirdzing:skeleton_birdzing_angry_1", "zingsbirdzing:skeleton_birdzing_angry_2", "zingsbirdzing:skeleton_birdzing_angry_3", "zingsbirdzing:skeleton_birdzing_angry_4"]
+  },
+  "entity.villager_birdzing.idle": {
+    "subtitle": "subtitles.entity.villager_birdzing.idle",
+    "sounds": ["zingsbirdzing:villager_birdzing_idle_1", "zingsbirdzing:villager_birdzing_idle_2", "zingsbirdzing:villager_birdzing_idle_3", "zingsbirdzing:villager_birdzing_idle_4", "zingsbirdzing:villager_birdzing_idle_5", "zingsbirdzing:villager_birdzing_idle_6"]
+  },
+  "entity.villager_birdzing.hurt": {
+    "subtitle": "subtitles.entity.villager_birdzing.hurt",
+    "sounds": ["zingsbirdzing:villager_birdzing_hurt_1", "zingsbirdzing:villager_birdzing_hurt_2", "zingsbirdzing:villager_birdzing_hurt_3"]
+  },
+  "entity.villager_birdzing.death": {
+    "subtitle": "subtitles.entity.villager_birdzing.death",
+    "sounds": ["zingsbirdzing:villager_birdzing_death"]
+  },
+  "entity.villager_birdzing.angry": {
+    "subtitle": "subtitles.entity.villager_birdzing.angry",
+    "sounds": ["zingsbirdzing:villager_birdzing_angry_1", "zingsbirdzing:villager_birdzing_angry_2", "zingsbirdzing:villager_birdzing_angry_3"]
+  },
+  "entity.zombie_birdzing.idle": {
+    "subtitle": "subtitles.entity.zombie_birdzing.idle",
+    "sounds": ["zingsbirdzing:zombie_birdzing_idle_1", "zingsbirdzing:zombie_birdzing_idle_2", "zingsbirdzing:zombie_birdzing_idle_3", "zingsbirdzing:zombie_birdzing_idle_4"]
+  },
+  "entity.zombie_birdzing.hurt": {
+    "subtitle": "subtitles.entity.zombie_birdzing.hurt",
+    "sounds": ["zingsbirdzing:zombie_birdzing_hurt_1", "zingsbirdzing:zombie_birdzing_hurt_2"]
+  },
+  "entity.zombie_birdzing.death": {
+    "subtitle": "subtitles.entity.zombie_birdzing.death",
+    "sounds": ["zingsbirdzing:zombie_birdzing_death_1", "zingsbirdzing:zombie_birdzing_death_2"]
+  },
+  "entity.zombie_birdzing.angry": {
+    "subtitle": "subtitles.entity.zombie_birdzing.angry",
+    "sounds": ["zingsbirdzing:zombie_birdzing_angry_1", "zingsbirdzing:zombie_birdzing_angry_2", "zingsbirdzing:zombie_birdzing_angry_3", "zingsbirdzing:zombie_birdzing_angry_4"]
+  },
+  "entity.ben_birdzing.talk": {
+    "subtitle": "subtitles.entity.ben_birdzing.talk",
+    "sounds": ["zingsbirdzing:ben_birdzing_talk_1", "zingsbirdzing:ben_birdzing_talk_2", "zingsbirdzing:ben_birdzing_talk_3", "zingsbirdzing:ben_birdzing_talk_4"]
   }
 }

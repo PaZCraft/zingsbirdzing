@@ -94,27 +94,27 @@ public class OminousBirdzingEntity extends Raider {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.angry"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ominous_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ominous_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ominous_birdzing.death"));
 	}
 
 	@Override
 	public SoundEvent getCelebrateSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ominous_birdzing.celebrate"));
 	}
 
 	@Override
@@ -159,6 +159,8 @@ public class OminousBirdzingEntity extends Raider {
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
 		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
 	}
 }

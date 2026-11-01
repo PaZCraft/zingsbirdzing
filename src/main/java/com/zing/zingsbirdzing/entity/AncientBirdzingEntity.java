@@ -108,22 +108,22 @@ public class AncientBirdzingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ancient_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ancient_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.ancient_birdzing.death"));
 	}
 
 	@Override
@@ -149,7 +149,15 @@ public class AncientBirdzingEntity extends TamableAnimal {
 			return false;
 		if (damagesource.is(DamageTypes.FALLING_ANVIL))
 			return false;
+		if (damagesource.is(DamageTypes.FREEZE) || damagesource.is(DamageTypes.STING)
+				|| damagesource.is(DamageTypes.THORNS))
+			return false;
 		return super.hurtServer(level, damagesource, amount);
+	}
+
+	@Override
+	public boolean canWalkOnPowderSnow() {
+		return true;
 	}
 
 	@Override
@@ -249,6 +257,8 @@ public class AncientBirdzingEntity extends TamableAnimal {
 		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
 		builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5);
 		builder = builder.add(Attributes.TEMPT_RANGE, 10);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
 	}
 }

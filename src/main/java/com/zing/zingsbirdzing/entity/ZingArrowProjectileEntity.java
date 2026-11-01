@@ -18,6 +18,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 
 import com.zing.zingsbirdzing.init.ZingsBirdzingModItems;
 import com.zing.zingsbirdzing.init.ZingsBirdzingModEntities;
+import com.zing.zingsbirdzing.init.ZingsBirdzingModSounds;
 
 import javax.annotation.Nullable;
 
@@ -96,7 +97,7 @@ public class ZingArrowProjectileEntity extends AbstractArrow implements ItemSupp
 		entityarrow.setKnockback(knockback);
 		entityarrow.igniteForSeconds(100);
 		world.addFreshEntity(entityarrow);
-		world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.zing_arrow.shot")), SoundSource.PLAYERS, 1, 1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
+		world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ZingsBirdzingModSounds.ENTITY_ZING_ARROW_SHOT.get(), SoundSource.PLAYERS, 1, 1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
 		return entityarrow;
 	}
 
@@ -112,7 +113,7 @@ public class ZingArrowProjectileEntity extends AbstractArrow implements ItemSupp
 		entityarrow.setCritArrow(true);
 		entityarrow.igniteForSeconds(100);
 		entity.level().addFreshEntity(entityarrow);
-		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.zing_arrow.shot")), SoundSource.PLAYERS, 1,
+		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ZingsBirdzingModSounds.ENTITY_ZING_ARROW_SHOT.get(), SoundSource.PLAYERS, 1,
 				1f / (RandomSource.create().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}

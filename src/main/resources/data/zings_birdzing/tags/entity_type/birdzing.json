@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "zings_birdzing:zingbird",
+    "zingsbirdzing:zingbird",
     "zings_birdzing:ominous_birdzing",
     "zings_birdzing:jackalope_birdzing",
     "zings_birdzing:zombie_birdzing",
     "zings_birdzing:long_birdzing",
-    "zings_birdzing:fire_birdzing",
+    "zingsbirdzing:birdzing",
     "zings_birdzing:wingless_birdzing",
     "zings_birdzing:halloween_birdzing",
     "zings_birdzing:villager_birdzing",
@@ -14,6 +14,13 @@
     "zings_birdzing:ancient_birdzing",
     "zings_birdzing:tailless_birdzing",
     "zings_birdzing:infested_birdzing",
-    "zings_birdzing:heavy_birdzing"
+    "zingsbirdzing:heavy_birdzing",
+    "zingsbirdzing:ben_birdzing",
+    "zingsbirdzing:camo_birdzing",
+    "zingsbirdzing:christmas_birdzing",
+    "zingsbirdzing:creeper_birdzing",
+    "zingsbirdzing:future_birdzing",
+    "zingsbirdzing:piglin_birdzing",
+    "zingsbirdzing:wither_birdzing"
   ]
 }

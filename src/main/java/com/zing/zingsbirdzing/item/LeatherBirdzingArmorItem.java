@@ -15,6 +15,6 @@ import net.minecraft.resources.Identifier;
 public class LeatherBirdzingArmorItem extends Item {
 	public LeatherBirdzingArmorItem(Item.Properties properties) {
 		super(properties.stacksTo(1).attributes(ItemAttributeModifiers.builder()
-				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "leather_birdzing_armor_0"), 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY).build()));
+				.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "leather_birdzing_armor_0"), 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY).build()));
 	}
 }

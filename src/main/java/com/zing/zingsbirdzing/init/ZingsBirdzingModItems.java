@@ -18,7 +18,7 @@ import java.util.function.Function;
 
 public class ZingsBirdzingModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ZiNGsBirdzing.MODID);
-	public static final DeferredItem<Item> FIRE_BIRDZING_SPAWN_EGG;
+	public static final DeferredItem<Item> BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> HEAVY_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> WINGLESS_BIRDZING_SPAWN_EGG;
 	public static final DeferredItem<Item> TAILLESS_BIRDZING_SPAWN_EGG;
@@ -46,7 +46,7 @@ public class ZingsBirdzingModItems {
 	public static final DeferredItem<Item> DIAMOND_BIRDZING_ARMOR;
 	public static final DeferredItem<Item> NETHERITE_BIRDZING_ARMOR;
 	static {
-		FIRE_BIRDZING_SPAWN_EGG = register("fire_birdzing_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ZingsBirdzingModEntities.FIRE_BIRDZING.get())));
+		BIRDZING_SPAWN_EGG = register("birdzing_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ZingsBirdzingModEntities.BIRDZING.get())));
 		HEAVY_BIRDZING_SPAWN_EGG = register("heavy_birdzing_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ZingsBirdzingModEntities.HEAVY_BIRDZING.get())));
 		WINGLESS_BIRDZING_SPAWN_EGG = register("wingless_birdzing_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ZingsBirdzingModEntities.WINGLESS_BIRDZING.get())));
 		TAILLESS_BIRDZING_SPAWN_EGG = register("tailless_birdzing_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ZingsBirdzingModEntities.TAILLESS_BIRDZING.get())));

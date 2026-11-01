@@ -26,7 +26,7 @@ import com.zing.zingsbirdzing.ZiNGsBirdzing;
 @EventBusSubscriber
 public class ZingsBirdzingModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ZiNGsBirdzing.MODID);
-	public static final DeferredHolder<EntityType<?>, EntityType<BirdzingEntity>> FIRE_BIRDZING = register("fire_birdzing",
+	public static final DeferredHolder<EntityType<?>, EntityType<BirdzingEntity>> BIRDZING = register("birdzing",
 			EntityType.Builder.<BirdzingEntity>of(BirdzingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(1000).setUpdateInterval(3).fireImmune()
 
 					.sized(0.6f, 0.5f)
@@ -171,7 +171,7 @@ public class ZingsBirdzingModEntities {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(FIRE_BIRDZING.get(), BirdzingEntity.createAttributes().build());
+		event.put(BIRDZING.get(), BirdzingEntity.createAttributes().build());
 		event.put(HEAVY_BIRDZING.get(), HeavyBirdzingEntity.createAttributes().build());
 		event.put(WINGLESS_BIRDZING.get(), WinglessBirdzingEntity.createAttributes().build());
 		event.put(TAILLESS_BIRDZING.get(), TaillessBirdzingEntity.createAttributes().build());

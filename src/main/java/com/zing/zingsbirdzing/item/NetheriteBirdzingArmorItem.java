@@ -16,8 +16,8 @@ public class NetheriteBirdzingArmorItem extends Item {
 	public NetheriteBirdzingArmorItem(Item.Properties properties) {
 		super(properties.stacksTo(1).fireResistant()
 				.attributes(ItemAttributeModifiers.builder()
-						.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_0"), 19, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY)
-						.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_1"), 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY)
-						.add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_2"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.ANY).build()));
+						.add(Attributes.ARMOR, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_0"), 19, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY)
+						.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_1"), 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY)
+						.add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(Identifier.fromNamespaceAndPath(ZiNGsBirdzing.MODID, "netherite_birdzing_armor_2"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.BODY).build()));
 	}
 }

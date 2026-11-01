@@ -101,22 +101,22 @@ public class ZombieBirdzingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.idle"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.zombie_birdzing.idle"));
 	}
 
 	@Override
 	public void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.step")), 0.15f, 1);
+		this.playSound(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.birdzing.step")), 0.15f, 1);
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.zombie_birdzing.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zings_birdzing:entity.birdzing.death"));
+		return BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("zingsbirdzing:entity.zombie_birdzing.death"));
 	}
 
 	@Override
@@ -162,6 +162,10 @@ public class ZombieBirdzingEntity extends TamableAnimal {
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+		InteractionResult armorResult = BirdzingArmorInteraction.handle(this, sourceentity, hand);
+		if (armorResult.consumesAction()) {
+			return armorResult;
+		}
 		ItemStack itemstack = sourceentity.getItemInHand(hand);
 		InteractionResult retval = InteractionResult.SUCCESS;
 		Item item = itemstack.getItem();
@@ -208,7 +212,7 @@ public class ZombieBirdzingEntity extends TamableAnimal {
 		Entity entity = this;
 		Level world = this.level();
 
-		BirdzingRightclickedOnEntityZombieProcedure.execute(world, x, y, z, entity, itemstack);
+		BirdzingRightclickedOnEntityZombieProcedure.execute(world, x, y, z, entity, sourceentity, itemstack);
 		return retval;
 	}
 
@@ -234,6 +238,11 @@ public class ZombieBirdzingEntity extends TamableAnimal {
 	}
 
 	@Override
+	public boolean canAgeUp() {
+		return false;
+	}
+
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, ItemTags.create(Identifier.parse("zings_birdzing:birdzing_food")))).test(stack);
 	}
@@ -254,6 +263,8 @@ public class ZombieBirdzingEntity extends TamableAnimal {
 		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1);
 		builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5);
 		builder = builder.add(Attributes.TEMPT_RANGE, 10);
+		builder = builder.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 0);
+		builder = builder.add(Attributes.JUMP_STRENGTH, 0.7);
 		return builder;
 	}
 }
